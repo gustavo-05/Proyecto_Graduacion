@@ -1,0 +1,58 @@
+.app-nav {
+    background-color: #68c5e2;
+}
+
+.app-header {
+    background-color: #118aaf;
+}
+
+.app-sidebar__toggle:focus{
+	background-color: #68c5e2;
+}
+
+.app-header__logo{
+	background-color: #118aaf;
+}
+
+.app-menu{
+	background-color: #118aaf;
+}
+
+.app-sidebar__user{
+	background-color: #118aaf;
+}
+
+.app-sidebar{
+	background-color: #118aaf;
+}
+
+.app sidebar-mini  pace-done{
+    background-color: #118aaf;
+}
+
+.treeview-item{
+    background-color: #68c5e2;
+}
+
+/*Para darle color a los formularios de roles*/
+.headerRegristro{
+	background: #118aaf;
+	color: #FFF;
+}
+
+
+
+.headerActualizar{
+	background: #68c5e2;
+	color: #FFF;
+}
+
+.notBlock{
+	display: none;
+}
+
+/* botón agregar nuevo*/
+.btn-primary{
+	background-color: #118aaf;
+}
+
