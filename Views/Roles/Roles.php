@@ -12,12 +12,6 @@
           </h1>
           <p>Bienvenidos a la vista Roles de usuario</p>
         </div>
-        <!--
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="<?= base_url();?>/roles"><?= $data['page_title']?></a></li>
-        </ul>
-        -->
       </div>
 
 

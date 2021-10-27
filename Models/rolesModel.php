@@ -10,7 +10,7 @@
         public function selectRoles()
         {
             //para recuperar datos de la base de datos
-            $sql = "SELECT * FROM rol ";
+            $sql = "SELECT * FROM rol WHERE estado != 0 ";
             $request = $this->select_all($sql);
             return $request;
         }
@@ -50,7 +50,8 @@
 		}
 
         //actualizar un dato en la tabla rol
-        public function updateRol(int $idrol, string $rol, string $descripción, int $estado){
+        public function updateRol(int $idrol, string $rol, string $descripción, int $estado)
+        {
 			$this->intIdrol = $idrol;
 			$this->strRol = $rol;
 			$this->strDescripción = $descripción;
@@ -68,6 +69,32 @@
 				$request = "exist";
 			}
 		    return $request;			
+		}
+
+		//eliminar un rol
+		public function deleteRol(int $idrol)
+		{
+			$this->intIdrol = $idrol;
+			$sql = "SELECT * FROM usuario WHERE idRol = $this->intIdrol";
+			$request = $this->select_all($sql);
+			if(empty($request))
+			{
+				$sql = "UPDATE rol SET estado = ? WHERE idRol = $this->intIdrol ";
+				$arrData = array(0);
+				$request = $this->update($sql,$arrData);
+				if($request)
+				{
+					$request = 'ok';	
+				}else
+				{
+					$request = 'error';
+				}
+			}
+			else
+			{
+				$request = 'exist';
+			}
+			return $request;
 		}
 
     } 

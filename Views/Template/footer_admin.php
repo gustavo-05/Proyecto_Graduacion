@@ -18,11 +18,11 @@
 
     <!--requiriendo modals-->
     <script src="<?= media(); ?>/js/functions_roles.js"></script>
+    <script src="<?= media(); ?>/js/functions_usuarios.js"></script>
     <script src="<?= media(); ?>/js/functions_hilos.js"></script>
     <script src="<?= media(); ?>/js/functions_telas.js"></script>
     <script src="<?= media(); ?>/js/functions_productos.js"></script>
     <script src="<?= media(); ?>/js/functions_personal.js"></script>
-    <script src="<?= media(); ?>/js/functions_usuarios.js"></script>
 
     
   </body>

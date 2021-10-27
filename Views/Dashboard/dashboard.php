@@ -5,12 +5,6 @@
           <h1><i class="fa fa-dashboard"></i> <?= $data['page_title']?></h1>
           <p>Bienvenidos a la vista dashboard BORDADOS</p>
         </div>
-        <!--
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#"><?= $data['page_title']?></a></li>
-        </ul>
-        -->
       </div>
       <div class="row">
         <div class="col-md-12">

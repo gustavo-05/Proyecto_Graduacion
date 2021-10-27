@@ -38,7 +38,7 @@
                 //para los botones del crud
                 //boton permisos
                 $arrData[$i]['permisos'] = '<div class="text-center">
-                <button class="btn btn-outline-info" btnPersimosRol" rl="'.$arrData[$i]['idRol'].'" title="Permisos">Ver Permisos</button>
+                <button class="btn btn-outline-info btnPermisosRol" rl="'.$arrData[$i]['idRol'].'" title="Permisos">Ver Permisos</button>
                 </div>';
 
                 //boton actualizar
@@ -121,6 +121,29 @@
             }
             echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 			die();
+        }
+
+        //para eliminar un rol
+        public function eliminarRol()
+        {
+            if($_POST){
+                $intIdrol = intval($_POST['idRol']);
+                $requestDelete = $this->model->deleteRol($intIdrol);
+                if($requestDelete == 'ok')
+                {
+                    $arrResponse = array('estado' => true, 'msg' => 'Eliminado correctamente');
+                }
+                else if($requestDelete == 'exist')
+                {
+                    $arrResponse = array('estado' => false, 'msg' => 'No se puedo eliminar el rol por estar vinculado a un usuario.');
+                }
+                else
+                {
+                    $arrResponse = array('estado' => false, 'msg' => 'Error al eliminar el Rol.');
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            }
+            die();
         }
     }
 ?>

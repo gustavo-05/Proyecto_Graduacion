@@ -7,6 +7,6 @@
     <title>Página no encontrada</title>
 </head>
 <body>
-    <h1>Error, la página que buscas no existe</h1>
+    <h1>Error, la página que buscas no existe :-( </h1>
 </body>
 </html>
