@@ -1,6 +1,6 @@
 <?php 
   headerAdmin($data);
-  //getModal('modalRoles', $data);
+  getModal('modalUsuarios', $data);
 
 ?>
 
@@ -31,7 +31,6 @@
                                         <th>Usuario</th>
                                         <th>Rol</th>
                                         <th>Estado</th>
-                                        <th>Permisos</th>
                                         <th>Actualizar</th>
                                         <th>Eliminar</th>
                                     </tr>
@@ -45,7 +44,6 @@
                                       <td>glopez</td>
                                       <td>Admin</td>
                                       <td>Activo</td>
-                                      <td>Boton</td>
                                       <td>Boton</td>
                                       <td>Boton</td>
                                     </tr>

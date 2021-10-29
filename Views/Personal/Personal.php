@@ -1,6 +1,6 @@
 <?php 
   headerAdmin($data);
-  //getModal('modalRoles', $data);
+  getModal('modalPersonal', $data);
 
 ?>
 
@@ -22,7 +22,7 @@
                 <div class="tile">
                     <div class="tile-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-dark" id="tableUsuarios">
+                            <table class="table table-striped table-dark" id="tablePersonal">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -30,7 +30,6 @@
                                         <th>Apellido</th>
                                         <th>Dirección</th>
                                         <th>Teléfono</th>
-                                        <th>Permisos</th>
                                         <th>Actualizar</th>
                                         <th>Eliminar</th>
                                     </tr>
@@ -43,7 +42,6 @@
                                       <td>López</td>
                                       <td>Totonicapán</td>
                                       <td>12345678</td>
-                                      <td>Boton</td>
                                       <td>Boton</td>
                                       <td>Boton</td>
                                     </tr>

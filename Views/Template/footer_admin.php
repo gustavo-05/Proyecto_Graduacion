@@ -16,8 +16,16 @@
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/dataTables.bootstrap.min.js"></script>
 
-    <!--requiriendo modals-->
-    <script src="<?= media(); ?>/js/functions_roles.js"></script>
+    <!--requiriendo modals VALIDACION PARA ESPECIFICAR QUE ARCHIVO TRABAJARÁ-->
+    <?php if($data['page_name'] == "rol_usuario" ) { ?>
+      <script src="<?= media(); ?>/js/functions_roles.js"></script>
+    <?php }    ?>
+    <?php if($data['page_name'] == "usuarios" ) { ?>
+      <script src="<?= media(); ?>/js/functions_usuarios.js"></script>
+    <?php }    ?>
+    <?php if($data['page_name'] == "personal" ) { ?>
+      <script src="<?= media(); ?>/js/functions_personal.js"></script>
+    <?php }    ?>
 
   </body>
 </html>
