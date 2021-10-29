@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     tableRoles.api().ajax.reload(function()
                     {
                         fntActualizarRol();
+                        fntEliminarRol();
+                        fntPermisos();
                     });
                 }
                 else
@@ -199,6 +201,7 @@ function fntEliminarRol()
                                 {
                                     fntActualizarRol();
                                     fntEliminarRol();
+                                    fntPermisos();
                                 });
                             }else
                             {
@@ -233,16 +236,38 @@ function fntPermisos()
             {
                 if(request.readyState == 4 && request.status == 200)
                 {
-                    console.log(request.responseText);
                     document.querySelector('#contentAjax').innerHTML = request.responseText;
                     $('.modalPermisos').modal('show');
+                    document.querySelector('#formPermisos').addEventListener('submit',fntGuardarPermisos,false);
                 }
-                /*if(request.readyState == 4 && request.status == 200){
-                    
-                    $('.modalPermisos').modal('show');
-                    document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
-                }*/
             }
         });
     });
+}
+
+//guardar permisos de roles
+function fntGuardarPermisos(evnet)
+{
+    evnet.preventDefault();
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url+'/Permisos/setPermisos'; 
+    var formElement = document.querySelector("#formPermisos");
+    var formData = new FormData(formElement);
+    request.open("POST",ajaxUrl,true);
+    request.send(formData);
+    //validación de datos
+    request.onreadystatechange = function()
+    {
+        if(request.readyState == 4 && request.status == 200)
+        {
+            var objData = JSON.parse(request.responseText);
+            if(objData.status)
+            {
+                swal("Permisos de usuario", objData.msg ,"success");
+            }else{
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
+    
 }

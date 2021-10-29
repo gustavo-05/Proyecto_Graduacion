@@ -36,11 +36,6 @@
                 <i class="icon fa fa-circle-o"></i> Roles
                 </a>
             </li>
-            <li>
-                <a class="treeview-item" href="<?= base_url(); ?>/permisos">
-                <i class="icon fa fa-circle-o"></i> Permisos
-                </a>
-            </li>
           </ul>
         </li>
 

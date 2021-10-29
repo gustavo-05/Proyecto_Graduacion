@@ -51,5 +51,32 @@
             die();
         }
         
+        //para guardar permisos
+        public function setPermisos()
+        {
+            if($_POST)
+            {
+                $intIdrol = intval($_POST['idRol']);
+                $modulos = $_POST['modulo'];
+
+                $this->model->deletePermisos($intIdrol);
+                foreach ($modulos as $modulo) {
+                    $idModulo = $modulo['idModulo'];
+                    $insertar = empty($modulo['insertar']) ? 0 : 1;
+                    $consultar = empty($modulo['consultar']) ? 0 : 1;
+                    $actualizar = empty($modulo['actualizar']) ? 0 : 1;
+                    $eliminar = empty($modulo['eliminar']) ? 0 : 1;
+                    $requestPermiso = $this->model->insertPermisos($intIdrol, $idModulo, $insertar, $consultar, $actualizar, $eliminar);
+                }
+                if($requestPermiso > 0)
+                {
+                    $arrResponse = array('status' => true, 'msg' => 'Permisos guardados.');
+                }else{
+                    $arrResponse = array("status" => false, "msg" => 'No es posible asignar los permisos.');
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            }
+            die();
+        }
     }
 ?>

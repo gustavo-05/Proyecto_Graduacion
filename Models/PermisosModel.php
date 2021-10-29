@@ -31,6 +31,29 @@
 			$request = $this->select_all($sql);
 			return $request;
 		}
+
+		//eliminar un permiso
+		public function deletePermisos(int $idrol)
+		{
+			$this->intRolid = $idrol;
+			$sql = "DELETE FROM permisos WHERE idRol = $this->intRolid";
+			$request = $this->delete($sql);
+			return $request;
+		}
+
+		//asignar permisos
+		public function insertPermisos(int $idrol, int $idmodulo, int $insertar, int $consultar, int $actualizar, int $eliminar){
+			$this->intRolid = $idrol;
+			$this->intModuloid = $idmodulo;
+			$this->insertar = $insertar;
+			$this->consultar = $consultar;
+			$this->actualizar = $actualizar;
+			$this->eliminar = $eliminar;
+			$query_insert  = "INSERT INTO permisos(idRol,idModulo,insertar,consultar,actualizar,eliminar) VALUES(?,?,?,?,?,?)";
+        	$arrData = array($this->intRolid, $this->intModuloid, $this->insertar, $this->consultar, $this->actualizar, $this->eliminar);
+        	$request_insert = $this->insert($query_insert,$arrData);		
+	        return $request_insert;
+		}
         
     }
 ?>
