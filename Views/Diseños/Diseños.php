@@ -1,6 +1,6 @@
 <?php 
   headerAdmin($data);
-  getModal('modalRoles', $data);
+  getModal('modalDiseños', $data);
 
 ?>
     <div id="contentAjax"></div>
@@ -9,9 +9,9 @@
         <div>
           <h1>
             <i class="fas fa-user-tag"></i> <?= $data['page_title']?>
-            <button class="btn btn-Nuevo" type="button" onclick="openModal();"><i class="fas fa-plus-square"></i>  Nuevo Rol</button>
+            <button class="btn btn-Nuevo" type="button" onclick="openModal();"><i class="fas fa-plus-square"></i>  Nuevo Diseño</button>
           </h1>
-          <p>Bienvenidos a la vista Roles de usuario</p>
+          <p>Bienvenidos a la vista de Diseños</p>
         </div>
       </div>
 
@@ -22,17 +22,14 @@
                 <div class="tile">
                     <div class="tile-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-dark" id="tableRoles">
+                            <table class="table table-striped table-dark" id="tableDiseños">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Rol</th>
+                                        <th>Diseño</th>
                                         <th>Descripción</th>
-                                        <th>Estado</th>
-                                        <th>Permisos</th>
-                                        <th>Actualizar</th>
+                                        <th>Editar información</th>
                                         <th>Eliminar</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>

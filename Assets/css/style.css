@@ -51,8 +51,33 @@
 	display: none;
 }
 
-/* botón agregar nuevo*/
-.btn-primary{
-	background-color: #118aaf;
+/* botón guardar los datos de los formularioso en los modals*/
+.btn-Guardar{
+	background: #68c5e2;
+	color: #FFF;
 }
 
+/*Botones en el home*/
+.btn-primary-Home{
+	background: #00bfff;
+	color: #FFF;
+}
+
+/*Bóton para abrir formularios de registros en los modals*/
+.btn-Nuevo{
+	background: #228b22;
+	color: #FFF;
+}
+
+.treeview-item.active, .treeview-item:hover, .treeview-item:focus {
+  background: #add8e6;
+  text-decoration: none;
+  color: #fff;
+}
+
+.app-menu__item.active, .app-menu__item:hover, .app-menu__item:focus {
+    background: #0d1214;
+    border-left-color: #009688;
+    text-decoration: none;
+    color: #fff;
+}

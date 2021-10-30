@@ -7,6 +7,9 @@
     <title><?php echo $data['page_tag']; ?></title>
 </head>
 <body>
+	<h1>HOLAAA!!!!!!!!!!!!</h1>
+	<br>
+	<h2>Este es el home</h2>
 
 </body>
 </html>

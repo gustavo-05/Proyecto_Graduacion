@@ -11,25 +11,25 @@
       <div class="modal-body">
             <form id="formPersonal" name="formPersonal">
               <input type="hidden" id="idPersonal" name="idPersonal" value="">
-               <p class="text-primary">Campos obligatorios.</p>
+               <p class="text-danger">* Campos obligatorios.</p>
                 <div class="form-group">
-                  <label for="txtNombrePersonal">Nombre</label>
+                  <label for="txtNombrePersonal">* Nombre</label>
                   <input class="form-control" id="txtNombrePersonal" name="txtNombrePersonal" type="text" placeholder="Ingrese su nombre" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtApellidoPersonal">Apellido</label>
+                  <label for="txtApellidoPersonal">* Apellido</label>
                   <input class="form-control" id="txtApellidoPersonal" name="txtApellidoPersonal" type="text" placeholder="Ingrese su apellido" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtDirecciónPersonal">Dirección</label>
+                  <label for="txtDirecciónPersonal">* Dirección</label>
                   <input class="form-control" id="txtDirecciónPersonal" name="txtDirecciónPersonal" type="text" placeholder="Ingrese su dirección" required="">
                 </div>
                 <div class="form-group">
-                  <label for="intTeléfonoPersonal">Teléfono</label>
+                  <label for="intTeléfonoPersonal">* Teléfono</label>
                   <input class="form-control" id="intTeléfonoPersonal" name="intTeléfonoPersonal" type="int" placeholder="Ingrese su número de teléfono" required="">
                 </div>
                 <div class="tile-footer">
-                    <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+                    <button id="btnActionForm" class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
                 </div>
             </form>
         </div>

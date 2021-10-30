@@ -26,6 +26,22 @@
     <?php if($data['page_name'] == "personal" ) { ?>
       <script src="<?= media(); ?>/js/functions_personal.js"></script>
     <?php }    ?>
+    <?php if($data['page_name'] == "telas" ) { ?>
+      <script src="<?= media(); ?>/js/functions_telas.js"></script>
+    <?php }    ?>
+    <?php if($data['page_name'] == "hilos" ) { ?>
+      <script src="<?= media(); ?>/js/functions_hilos.js"></script>
+    <?php }    ?>
+    <?php if($data['page_name'] == "colores" ) { ?>
+      <script src="<?= media(); ?>/js/functions_colores.js"></script>
+    <?php }    ?>
+    <?php if($data['page_name'] == "diseños" ) { ?>
+      <script src="<?= media(); ?>/js/functions_diseños.js"></script>
+    <?php }    ?>
+    <?php if($data['page_name'] == "tipoHilos" ) { ?>
+      <script src="<?= media(); ?>/js/functions_tipoHilos.js"></script>
+    <?php }    ?>
+    
 
   </body>
 </html>

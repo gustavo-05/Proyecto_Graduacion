@@ -9,9 +9,9 @@
       </div>
       <ul class="app-menu">
         <li>
-          <a class="app-menu__item" href="<?= base_url(); ?>/dashboard">
+          <a class="app-menu__item" href="<?= base_url(); ?>/principal">
             <i class="app-menu__icon fa fa-dashboard"></i>
-            <span class="app-menu__label">Dashboard</span>
+            <span class="app-menu__label">Principal</span>
          </a>
         </li>
         <li class="treeview">
@@ -65,6 +65,32 @@
                 <i class="app-menu__icon fa fa-shopping-bag" aria-hidden="true"></i>
                 <span class="app-menu__label">Productos</span>
             </a>
+        </li>
+
+        <!--Complementos-->
+        <li class="treeview">
+            <a class="app-menu__item" href="#" data-toggle="treeview">
+                <i class="app-menu__icon fa fa-users" aria-hidden="true"></i>
+                <span class="app-menu__label">Complementos</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+          <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" href="<?= base_url(); ?>/colores">
+                    <i class="icon fa fa-circle-o"></i> Colores
+                </a>
+            </li>
+            <li>
+                <a class="treeview-item" href="<?= base_url(); ?>/diseños">
+                    <i class="icon fa fa-circle-o"></i> Diseños
+                </a>
+            </li>
+            <li>
+                <a class="treeview-item" href="<?= base_url(); ?>/tipoHilos">
+                <i class="icon fa fa-circle-o"></i> Tipo de hilos
+                </a>
+            </li>
+          </ul>
         </li>
 
         <!--Cerrar sesión-->

@@ -13,5 +13,15 @@
             $data['page_name'] = "personal";
             $this->views->getView($this,"personal",$data);
         }
+
+        //metodo para obtener listado de roles
+        public function getPersonal()
+        {
+            $arrData = $this->model->selectPersonal();
+
+            //para convertir el array en formato json
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 ?>
