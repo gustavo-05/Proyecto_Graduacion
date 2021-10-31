@@ -8,7 +8,7 @@
       <div class="app-title">
         <div>
           <h1>
-            <i class="fas fa-user-tag"></i> <?= $data['page_title']?>
+            <i class="app-menu__icon fas fa-puzzle-piece"></i> <?= $data['page_title']?>
             <button class="btn btn-Nuevo" type="button" onclick="openModal();"><i class="fas fa-plus-square"></i>  Nuevo Diseño</button>
           </h1>
           <p>Bienvenidos a la vista de Diseños</p>
@@ -28,7 +28,7 @@
                                         <th>ID</th>
                                         <th>Diseño</th>
                                         <th>Descripción</th>
-                                        <th>Editar información</th>
+                                        <th>Actualizar</th>
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>

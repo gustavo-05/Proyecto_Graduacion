@@ -11,7 +11,7 @@
       </div>
       <!--FOrumulario para agregar diseño-->
       <div class="modal-body">
-            <form id="formTipoHilos" name="formTipoHilos">
+            <form id="formTipoHilo" name="formTipoHilo">
               <input type="hidden" id="idTipoHilos" name="idTipoHilos" value="">
                <p class="text-danger">* Campos obligatorios.</p>
                 <div class="form-group">

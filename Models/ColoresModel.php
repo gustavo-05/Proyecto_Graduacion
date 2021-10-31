@@ -1,5 +1,5 @@
 <?php
-    class PersonalModel extends Mysql
+    class ColoresModel extends Mysql
     {
         public function __construct()
         {
@@ -7,10 +7,10 @@
         }
 
         //para la funcion de seleccionar los colores desde la base de datos
-        public function selectPersonal()
+        public function selectColores()
         {
             //para recuperar datos de la base de datos
-            $sql = "SELECT * FROM personal";
+            $sql = "SELECT * FROM color";
             $request = $this->select_all($sql);
             return $request;
         }

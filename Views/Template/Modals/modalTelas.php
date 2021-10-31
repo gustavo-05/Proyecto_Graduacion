@@ -9,20 +9,20 @@
         </button>
       </div>
       <div class="modal-body">
-            <form id="formTelas" name="formTelas">
+            <form id="formTela" name="formTela">
               <input type="hidden" id="idTelas" name="idTelas" value="">
                 <div class="form-group">
-                    <label for="listColorTelas">Color</label>
+                    <label class="control-label" for="listColorTelas">Color</label>
                     <select class="form-control" id="listColorTelas" name="lisColorTelas" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                  <label for="intCantidadTelas">Cantidad</label>
+                  <label class="control-label" for="intCantidadTelas">Cantidad</label>
                   <input class="form-control" id="intCantidadTelas" name="intCantidadTelas" type="int" placeholder="Ingrese la cantidad de idTelas" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtDescripciónTelas">Descripción</label>
+                  <label class="control-label" for="txtDescripciónTelas">Descripción</label>
                   <input class="form-control" id="txtDescripciónTelas" name="txtDescripciónTelas" type="text" placeholder="(Opcional)">
                 </div>
                 

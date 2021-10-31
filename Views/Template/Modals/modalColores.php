@@ -11,15 +11,15 @@
       </div>
       <!--FOrumulario para agregar diseño-->
       <div class="modal-body">
-            <form id="formColores" name="formColores">
+            <form id="formColor" name="formColor">
               <input type="hidden" id="idColor" name="idColor" value="">
                <p class="text-danger">* Campos obligatorios.</p>
                 <div class="form-group">
-                  <label for="txtNombreColores">* Nombre del color</label>
+                  <label class="control-label" for="txtNombreColores">* Nombre del color</label>
                   <input class="form-control" id="txtNombreColores" name="txtNombreColores" type="text" placeholder="Ingrese el color" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtDescripciónColores">Descripción</label>
+                  <label class="control-label" for="txtDescripciónColores">Descripción</label>
                   <input class="form-control" id="txtDescripciónColores" name="txtDescripciónColores" type="text" placeholder="(opcional)">
                 </div>
                 <div class="tile-footer">

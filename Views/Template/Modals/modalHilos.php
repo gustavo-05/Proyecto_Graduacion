@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-            <form id="formHilos" name="formHilos">
+            <form id="formHilo" name="formHilo">
               <input type="hidden" id="idHilos" name="idHilos" value="">
                 <div class="form-group">
                     <label for="listColorHilos">Color</label>
@@ -32,7 +32,7 @@
                   <input class="form-control" id="intCantidadHilos" name="intCantidadHilos" type="int" placeholder="Ingrese la cantidad de Telas" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtDescripciónHilos">Descripción</label>
+                  <label class="control-label" for="txtDescripciónHilos">Descripción</label>
                   <input class="form-control" id="txtDescripciónHilos" name="txtDescripciónHilos" type="text" placeholder="(Opcional)">
                 </div>
                 <div class="tile-footer">

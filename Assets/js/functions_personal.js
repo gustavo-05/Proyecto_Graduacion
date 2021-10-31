@@ -1,7 +1,7 @@
 var tablePersonal;
 
-document.addEventListener('DOMContentLoaded', function() {
-
+document.addEventListener('DOMContentLoaded', function()
+{
     tablePersonal = $('#tablePersonal').dataTable({
         "aProcessing": true,
         "aServerSide": true,
@@ -18,28 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
             { "data": "apellido" },
             { "data": "dirección" },
             { "data": "teléfono" },
-            { "data": "editar" },
+            { "data": "actualizar" },
             { "data": "eliminar" }
         ],
         "resonsieve": "true",
         "bDestroy": true,
-        "iDisplayLength": 10,
-        "order": [
-            [0, "asc"]
-        ]
+        "iDisplayLength": 100,
+        "order": [[0, "asc"]]
     });
-
-    
 });
 
 //id de datatables
 $('#tablePersonal').DataTable();
-
-//funcion para llamar el formulario cuando se presione el botón
-function openModal() {
-    $('#modalFromPersonal').modal('show');
-}
-
 
 function openModal() 
 {
@@ -49,7 +39,7 @@ function openModal()
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
     document.querySelector('#btnTexto').innerHTML = "Guardar";
     document.querySelector('#tituloModal').innerHTML = "Registro de personal";
-    document.querySelector('#formPersonal').reset();
+    document.querySelector('#formPersona').reset();
 
-    $('#modalFromPersonal').modal('show');
+    $('#modalFromPersona').modal('show');
 }

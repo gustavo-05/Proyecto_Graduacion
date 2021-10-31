@@ -9,24 +9,24 @@
         </button>
       </div>
       <div class="modal-body">
-            <form id="formPersonal" name="formPersonal">
+            <form id="formPersona" name="formPersona">
               <input type="hidden" id="idPersonal" name="idPersonal" value="">
                <p class="text-danger">* Campos obligatorios.</p>
                 <div class="form-group">
-                  <label for="txtNombrePersonal">* Nombre</label>
+                  <label class="control-label" for="txtNombrePersonal">* Nombre</label>
                   <input class="form-control" id="txtNombrePersonal" name="txtNombrePersonal" type="text" placeholder="Ingrese su nombre" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtApellidoPersonal">* Apellido</label>
+                  <label class="control-label" for="txtApellidoPersonal">* Apellido</label>
                   <input class="form-control" id="txtApellidoPersonal" name="txtApellidoPersonal" type="text" placeholder="Ingrese su apellido" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtDirecciónPersonal">* Dirección</label>
+                  <label class="control-label" for="txtDirecciónPersonal">* Dirección</label>
                   <input class="form-control" id="txtDirecciónPersonal" name="txtDirecciónPersonal" type="text" placeholder="Ingrese su dirección" required="">
                 </div>
                 <div class="form-group">
-                  <label for="intTeléfonoPersonal">* Teléfono</label>
-                  <input class="form-control" id="intTeléfonoPersonal" name="intTeléfonoPersonal" type="int" placeholder="Ingrese su número de teléfono" required="">
+                  <label class="control-label" for="intTeléfonoPersonal">Teléfono</label>
+                  <input class="form-control" id="intTeléfonoPersonal" name="intTeléfonoPersonal" type="int" placeholder="Ingrese su número de teléfono">
                 </div>
                 <div class="tile-footer">
                     <button id="btnActionForm" class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>

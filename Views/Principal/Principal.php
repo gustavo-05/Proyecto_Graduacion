@@ -4,7 +4,7 @@
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i> <?= $data['page_title']?></h1>
+          <h1><i class="fas fa-home"></i> <?= $data['page_title']?></h1>
           <p>Bienvenidos a la vista Principal BORDADOS</p>
         </div>
       </div>

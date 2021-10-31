@@ -10,7 +10,7 @@
       <ul class="app-menu">
         <li>
           <a class="app-menu__item" href="<?= base_url(); ?>/principal">
-            <i class="app-menu__icon fa fa-dashboard"></i>
+            <i class="app-menu__icon fas fa-home"></i>
             <span class="app-menu__label">Principal</span>
          </a>
         </li>
@@ -70,7 +70,7 @@
         <!--Complementos-->
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-users" aria-hidden="true"></i>
+                <i class="app-menu__icon fas fa-puzzle-piece" aria-hidden="true"></i>
                 <span class="app-menu__label">Complementos</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>

@@ -11,15 +11,15 @@
       </div>
       <!--FOrumulario para agregar diseño-->
       <div class="modal-body">
-            <form id="formDiseños" name="formDiseños">
+            <form id="formDiseño" name="formDiseño">
               <input type="hidden" id="idDiseño" name="idDiseño" value="">
                <p class="text-danger">* Campos obligatorios.</p>
                 <div class="form-group">
-                  <label for="txtNombreDiseños">* Nombre del diseño</label>
+                  <label class="control-label" for="txtNombreDiseños">* Nombre del diseño</label>
                   <input class="form-control" id="txtNombreDiseños" name="txtNombreDiseños" type="text" placeholder="Ingrese el color" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtDescripciónDiseños">Descripción</label>
+                  <label class="control-label" for="txtDescripciónDiseños">Descripción</label>
                   <input class="form-control" id="txtDescripciónDiseños" name="txtDescripciónDiseños" type="text" placeholder="(opcional)">
                 </div>
                 <div class="tile-footer">

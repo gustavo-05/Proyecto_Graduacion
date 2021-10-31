@@ -38,17 +38,17 @@
                 //para los botones del crud
                 //boton permisos
                 $arrData[$i]['permisos'] = '<div class="text-center">
-                <button class="btn btn-outline-info btnPermisosRol" rl="'.$arrData[$i]['idRol'].'" title="Permisos">Ver Permisos</button>
+                <button class="btn btn-outline-info btnPermisosRol" rl="'.$arrData[$i]['idRol'].'" title="Permisos">Permisos</button>
                 </div>';
 
                 //boton actualizar
                 $arrData[$i]['actualizar'] = '<div class="text-center">
-                <button class="btn btn-outline-warning btnActualizarRol" rl="'.$arrData[$i]['idRol'].'" title="Actualizar">Actualizar Rol</button>
+                <button class="btn btn-outline-warning btnActualizarRol" rl="'.$arrData[$i]['idRol'].'" title="Actualizar">Actualizar</button>
                 </div>';
 
                 //boton eliminar
                 $arrData[$i]['eliminar'] = '<div class="text-center">
-                <button class="btn btn-outline-danger btnEliminarRol" rl="'.$arrData[$i]['idRol'].'" title="Eliminar">Eliminar Rol</button>
+                <button class="btn btn-outline-danger btnEliminarRol" rl="'.$arrData[$i]['idRol'].'" title="Eliminar">Eliminar</button>
                 </div>';
             }
 

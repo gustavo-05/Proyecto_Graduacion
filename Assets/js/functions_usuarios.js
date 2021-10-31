@@ -1,4 +1,38 @@
+var tableUsuarios;
+ 
+document.addEventListener('DOMContentLoaded', function() {
 
+    tableUsuarios = $('#tableUsuarios').dataTable({
+        "aProcessing": true,
+        "aServerSide": true,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+        },
+        "ajax": {
+            "url": " " + base_url + "/Usuarios/getUsuarios",
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "idUsuario" },
+            { "data": "usuario" },
+            { "data": "nombre" },
+            { "data": "apellido" },
+            { "data": "rol" },
+            { "data": "estado" },
+            { "data": "actualizar" },
+            { "data": "eliminar" }
+        ],
+        "resonsieve": "true",
+        "bDestroy": true,
+        "iDisplayLength": 50,
+        "order": [
+            [0, "asc"]
+        ]
+    });
+});
+
+//id de datatables
+$('#tableUsuarios').DataTable();
 
 
 function openModal() 
@@ -11,5 +45,5 @@ function openModal()
     document.querySelector('#tituloModal').innerHTML = "Registro de Usuario";
     document.querySelector('#formUsuario').reset();
 
-    $('#modalFromUsuario').modal('show');
+    $('#modalFromUsuarios').modal('show');
 }

@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modalFromUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalFromUsuarios" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header headerRegistro">
@@ -13,28 +13,28 @@
               <input type="hidden" id="idUsuario" name="idUsuario" value="">
                <p class="text-danger">* Campos obligatorios.</p>
                 <div class="form-group">
-                  <label for="txtUsuario">* Ingrese su usuario</label>
+                  <label class="control-label" for="txtUsuario">* Ingrese su usuario</label>
                   <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Ingrese su usuario" required="">
                 </div>
                 <div class="form-group">
-                  <label for="txtContraseña">* Ingrese su contraseña</label>
+                  <label class="control-label" for="txtContraseña">* Ingrese su contraseña</label>
                   <input class="form-control" id="txtContraseña" name="txtContraseña" type="password" placeholder="Ingrese su contraseña">
                 </div>
                 <div class="form-group">
-                    <label for="listEstado">* Estado</label>
+                  <label class="control-label" for="listEstado">* Estado</label>
                     <select class="form-control" id="listEstado" name="listEstado" required="">
                       <option value="1">Activo</option>
                       <option value="2">Inactivo</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="listRol">* Rol</label>
+                  <label class="control-label" for="listRol">* Rol</label>
                     <select class="form-control" id="listRol" name="listRol" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="listPersonal">* Personal Asociado</label>
+                    <label class="control-label" for="listPersonal">* Personal Asociado</label>
                     <select class="form-control" id="listPersonal" name="lisPersonal" required>
                       
                     </select>

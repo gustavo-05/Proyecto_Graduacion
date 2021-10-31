@@ -36,15 +36,7 @@
                                 </thead>
                                 <tbody>
                                     <!--Aqui se generaran los datos desde la base de dtaso-->
-                                    <tr>
-                                      <td>1</td>
-                                      <td>Gustavo</td>
-                                      <td>López</td>
-                                      <td>Totonicapán</td>
-                                      <td>12345678</td>
-                                      <td>Boton</td>
-                                      <td>Boton</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>

@@ -8,7 +8,7 @@
       <div class="app-title">
         <div>
           <h1>
-            <i class="fas fa-user-tag"></i> <?= $data['page_title']?>
+            <i class="app-menu__icon fas fa-toolbox"></i> <?= $data['page_title']?>
             <button class="btn btn-Nuevo" type="button" onclick="openModal();"><i class="fas fa-plus-square"></i>  Nuevo Hilo</button>
           </h1>
           <p>Bienvenidos a la vista de Hilos</p>
@@ -38,17 +38,6 @@
                                 </thead>
                                 <tbody>
                                     <!--Aqui se generaran los datos desde la base de dtaso-->
-                                    <tr>
-                                      <td>1</td>
-                                      <td>Blanco</td>
-                                      <td>1254</td>
-                                      <td>Polyester</td>
-                                      <td>8</td>
-                                      <td>Conos polyester, color oficial</td>
-                                      <td>Botón</td>
-                                      <td>Botón</td>
-                                      <td>Botón</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
