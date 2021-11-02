@@ -13,9 +13,9 @@
       <div class="modal-body">
             <form id="formTipoHilo" name="formTipoHilo">
               <input type="hidden" id="idTipoHilos" name="idTipoHilos" value="">
-               <p class="text-danger">* Campos obligatorios.</p>
+               <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                  <label for="txtNombreTipohilos">* Tipo de Hilo</label>
+                  <label for="txtNombreTipohilos">Tipo de Hilo</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtNombreTipohilos" name="txtNombreTipohilos" type="text" placeholder="Ingrese el color" required="">
                 </div>
                 <div class="tile-footer">

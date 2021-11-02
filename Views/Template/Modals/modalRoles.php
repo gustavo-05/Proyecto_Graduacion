@@ -13,16 +13,17 @@
           <div class="tile-body">
             <form id="formRol" name="formRol">
               <input type="hidden" id="idRol" name="idRol" value="">
+              <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                  <label class="control-label">Nombre del Rol</label>
+                  <label class="control-label">Nombre del Rol</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Ingrese el nombre el rol" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Descripción</label>
+                  <label class="control-label">Descripción</label><span class="text-danger"> *</span>
                   <textarea class="form-control" id="txtDescripción" name="txtDescripción" rows="2" placeholder="Ingrese una descripción del rol" required=""></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="exampleSelect1">Estado</label>
+                    <label for="exampleSelect1">Estado</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listEstado" name="listEstado" required="">
                       <option value="1">Activo</option>
                       <option value="2">Inactivo</option>

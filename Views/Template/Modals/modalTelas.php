@@ -11,19 +11,20 @@
       <div class="modal-body">
             <form id="formTela" name="formTela">
               <input type="hidden" id="idTelas" name="idTelas" value="">
+              <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                    <label class="control-label" for="listColorTelas">Color</label>
+                    <label class="control-label" for="listColorTelas">Color</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listColorTelas" name="lisColorTelas" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="intCantidadTelas">Cantidad</label>
-                  <input class="form-control" id="intCantidadTelas" name="intCantidadTelas" type="int" placeholder="Ingrese la cantidad de idTelas" required="">
+                  <label class="control-label" for="intCantidadTelas">Cantidad</label><span class="text-danger"> *</span>
+                  <input class="form-control" id="intCantidadTelas" name="intCantidadTelas" type="int" placeholder="Ingrese la cantidad de telas" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="txtDescripciónTelas">Descripción</label>
-                  <input class="form-control" id="txtDescripciónTelas" name="txtDescripciónTelas" type="text" placeholder="(Opcional)">
+                  <label class="control-label">Descripción</label>
+                  <textarea class="form-control" id="txtDescripciónTelas" name="txtDescripciónTelas" rows="2" placeholder="Opcional"></textarea>
                 </div>
                 
                 <div class="tile-footer">

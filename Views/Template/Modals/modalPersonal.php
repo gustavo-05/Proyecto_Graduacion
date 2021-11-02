@@ -11,17 +11,17 @@
       <div class="modal-body">
             <form id="formPersona" name="formPersona">
               <input type="hidden" id="idPersonal" name="idPersonal" value="">
-               <p class="text-danger">* Campos obligatorios.</p>
+               <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                  <label class="control-label" for="txtNombrePersonal">* Nombre</label>
+                  <label class="control-label" for="txtNombrePersonal">Nombre</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtNombrePersonal" name="txtNombrePersonal" type="text" placeholder="Ingrese su nombre" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="txtApellidoPersonal">* Apellido</label>
+                  <label class="control-label" for="txtApellidoPersonal">Apellido</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtApellidoPersonal" name="txtApellidoPersonal" type="text" placeholder="Ingrese su apellido" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="txtDirecciónPersonal">* Dirección</label>
+                  <label class="control-label" for="txtDirecciónPersonal">Dirección</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtDirecciónPersonal" name="txtDirecciónPersonal" type="text" placeholder="Ingrese su dirección" required="">
                 </div>
                 <div class="form-group">

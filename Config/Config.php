@@ -1,5 +1,5 @@
 <?php
-    //define("BASE_URL", "http://localhost/maquila/");
+    //define("BASE_URL", "http://localhost/bordados_proyecto/");
     const BASE_URL = "http://localhost/bordados_proyecto";
 
     //zona horaria

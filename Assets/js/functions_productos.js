@@ -1,23 +1,24 @@
-var tableTelas;
+var tableProductos;
 
 document.addEventListener('DOMContentLoaded', function()
 {
-    tableTelas = $('#tableTelas').dataTable({
+    tableProductos = $('#tableProductos').dataTable({
         "aProcessing": true,
         "aServerSide": true,
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax": {
-            "url": " " + base_url + "/Telas/getTelas",
+            "url": " " + base_url + "/Productos/getProductos",
             "dataSrc": ""
         },
         "columns": [
-            { "data": "idTelas" },
+            { "data": "idProductos" },
+            { "data": "nombre" },
             { "data": "color" },
+            { "data": "precio" },
             { "data": "cantidad" },
             { "data": "descripción" },
-            { "data": "editar" },
             { "data": "actualizar" },
             { "data": "eliminar" }
         ],
@@ -29,17 +30,18 @@ document.addEventListener('DOMContentLoaded', function()
 });
 
 //id de datatables
-$('#tableTelas').DataTable();
+$('#tableProductos').DataTable();
+
 
 function openModal() 
 {
     //para limpiar el modal
-    document.querySelector('#idTelas').value = "";
+    document.querySelector('#idProductos').value = "";
     document.querySelector('.modal-header').classList.replace("headerActualizar", "headerRegistro");
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
     document.querySelector('#btnTexto').innerHTML = "Guardar";
-    document.querySelector('#tituloModal').innerHTML = "Registro de telas";
-    document.querySelector('#formTela').reset();
+    document.querySelector('#tituloModal').innerHTML = "Registro de productos";
+    document.querySelector('#formProducto').reset();
 
-    $('#modalFromTelas').modal('show');
+    $('#modalFromProductos').modal('show');
 }

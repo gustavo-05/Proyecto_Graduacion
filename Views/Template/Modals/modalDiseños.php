@@ -13,14 +13,14 @@
       <div class="modal-body">
             <form id="formDiseño" name="formDiseño">
               <input type="hidden" id="idDiseño" name="idDiseño" value="">
-               <p class="text-danger">* Campos obligatorios.</p>
+               <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                  <label class="control-label" for="txtNombreDiseños">* Nombre del diseño</label>
+                  <label class="control-label" for="txtNombreDiseños">Nombre del diseño</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtNombreDiseños" name="txtNombreDiseños" type="text" placeholder="Ingrese el color" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="txtDescripciónDiseños">Descripción</label>
-                  <input class="form-control" id="txtDescripciónDiseños" name="txtDescripciónDiseños" type="text" placeholder="(opcional)">
+                  <label class="control-label">Descripción</label>
+                  <textarea class="form-control" id="txtDescripciónDiseños" name="txtDescripciónDiseños" rows="2" placeholder="Opcional"></textarea>
                 </div>
                 <div class="tile-footer">
                     <button id="btnActionForm" class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>

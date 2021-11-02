@@ -11,30 +11,30 @@
       <div class="modal-body">
             <form id="formUsuario" name="formUsuario">
               <input type="hidden" id="idUsuario" name="idUsuario" value="">
-               <p class="text-danger">* Campos obligatorios.</p>
+               <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                  <label class="control-label" for="txtUsuario">* Ingrese su usuario</label>
+                  <label class="control-label" for="txtUsuario">Ingrese su usuario</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Ingrese su usuario" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="txtContraseña">* Ingrese su contraseña</label>
+                  <label class="control-label" for="txtContraseña">Ingrese su contraseña</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtContraseña" name="txtContraseña" type="password" placeholder="Ingrese su contraseña">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="listEstado">* Estado</label>
+                  <label class="control-label" for="listEstado">Estado</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listEstado" name="listEstado" required="">
                       <option value="1">Activo</option>
                       <option value="2">Inactivo</option>
                     </select>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="listRol">* Rol</label>
+                  <label class="control-label" for="listRol">Rol</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listRol" name="listRol" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="listPersonal">* Personal Asociado</label>
+                    <label class="control-label" for="listPersonal">Personal Asociado</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listPersonal" name="lisPersonal" required>
                       
                     </select>

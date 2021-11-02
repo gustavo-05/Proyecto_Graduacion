@@ -41,5 +41,5 @@ function openModal()
     document.querySelector('#tituloModal').innerHTML = "Registro de personal";
     document.querySelector('#formPersona').reset();
 
-    $('#modalFromPersona').modal('show');
+    $('#modalFromPersonal').modal('show');
 }

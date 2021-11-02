@@ -48,6 +48,9 @@
     <?php if($data['page_name'] == "tipoHilos" ) { ?>
       <script src="<?= media(); ?>/js/functions_tipoHilos.js"></script>
     <?php }    ?>
+    <?php if($data['page_name'] == "productos" ) { ?>
+      <script src="<?= media(); ?>/js/functions_productos.js"></script>
+    <?php }    ?>
     
 
   </body>

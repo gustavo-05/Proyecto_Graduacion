@@ -11,29 +11,30 @@
       <div class="modal-body">
             <form id="formHilo" name="formHilo">
               <input type="hidden" id="idHilos" name="idHilos" value="">
+              <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                    <label for="listColorHilos">Color</label>
+                    <label class="control-label" for="listColorHilos">Color</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listColorHilos" name="lisColorHilos" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                  <label for="txtCódigoHilos">Código de Color</label>
+                  <label class="control-label" for="txtCódigoHilos">Código de Color</label><span class="text-danger"> *</span>
                   <input class="form-control" id="txtCódigoHilos" name="txtCódigoHilos" type="text" placeholder="Ingrese el código de hilo" required="">
                 </div>
                 <div class="form-group">
-                    <label for="listTipoHilos">Tipo de hilo</label>
+                    <label class="control-label" for="listTipoHilos">Tipo de hilo</label><span class="text-danger"> *</span>
                     <select class="form-control" id="listTipoHilos" name="lisTipoHilos" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                  <label for="intCantidadHilos">Cantidad</label>
+                  <label class="control-label" for="intCantidadHilos">Cantidad</label><span class="text-danger"> *</span>
                   <input class="form-control" id="intCantidadHilos" name="intCantidadHilos" type="int" placeholder="Ingrese la cantidad de Telas" required="">
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="txtDescripciónHilos">Descripción</label>
-                  <input class="form-control" id="txtDescripciónHilos" name="txtDescripciónHilos" type="text" placeholder="(Opcional)">
+                  <label class="control-label">Descripción</label>
+                  <textarea class="form-control" id="txtDescripciónHilos" name="txtDescripciónHilos" rows="2" placeholder="Opcional"></textarea>
                 </div>
                 <div class="tile-footer">
                     <button id="btnActionForm" class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
