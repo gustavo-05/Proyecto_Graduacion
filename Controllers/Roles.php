@@ -135,7 +135,7 @@
                 }
                 else if($requestDelete == 'exist')
                 {
-                    $arrResponse = array('estado' => false, 'msg' => 'No se puedo eliminar el rol por estar vinculado a un usuario.');
+                    $arrResponse = array('estado' => false, 'msg' => 'No se pudo eliminar el rol por estar vinculado a un usuario.');
                 }
                 else
                 {

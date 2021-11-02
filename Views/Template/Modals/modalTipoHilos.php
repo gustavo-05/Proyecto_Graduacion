@@ -12,11 +12,11 @@
       <!--FOrumulario para agregar diseño-->
       <div class="modal-body">
             <form id="formTipoHilo" name="formTipoHilo">
-              <input type="hidden" id="idTipoHilos" name="idTipoHilos" value="">
+              <input type="hidden" id="idTipoHilo" name="idTipoHilo" value="">
                <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
-                  <label for="txtNombreTipohilos">Tipo de Hilo</label><span class="text-danger"> *</span>
-                  <input class="form-control" id="txtNombreTipohilos" name="txtNombreTipohilos" type="text" placeholder="Ingrese el color" required="">
+                  <label for="txtNombreTipoHilos">Tipo de Hilo</label><span class="text-danger"> *</span>
+                  <input class="form-control" id="txtNombreTipoHilos" name="txtNombreTipoHilos" type="text" placeholder="Ingrese el tipo" required="">
                 </div>
                 <div class="tile-footer">
                     <button id="btnActionForm" class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>

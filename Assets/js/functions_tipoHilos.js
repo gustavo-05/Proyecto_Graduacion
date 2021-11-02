@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function()
             "dataSrc": ""
         },
         "columns": [
-            { "data": "idTipoHilos" },
+            { "data": "idTipoHilo" },
             { "data": "tipo" },
             { "data": "actualizar" },
             { "data": "eliminar" }
@@ -23,6 +23,51 @@ document.addEventListener('DOMContentLoaded', function()
         "iDisplayLength": 100,
         "order": [[0, "asc"]]
     });
+
+    //nuevo Tipo de hilo y validacion de campos
+    var formTipoHilo = document.querySelector("#formTipoHilo");
+    formTipoHilo.onsubmit = function(e)
+    {
+        e.preventDefault();
+
+        var intIdTipoHilo = document.querySelector('#idTipoHilo').value;
+        var strTipo = document.querySelector('#txtNombreTipoHilos').value;
+        if(strTipo == '') 
+        {
+            swal("Atención", "Debe llenar todos los campos." , "error");
+            return false;
+        }
+        //capturando datos por medio de ajax
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/TipoHilos/setTipoHilo';
+        var formData = new FormData(formTipoHilo);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        request.onreadystatechange = function()
+        {
+            if (request.readyState == 4 && request.status == 200) 
+            {
+                var objData = JSON.parse(request.responseText);
+                if(objData.estado)
+                {
+                    //para volver a cargar los datos en los formularios despues de un nuevo ingreso
+
+                    $('#modalFormTipoHilos').modal("hide");
+                    formTipoHilo.reset();
+                    swal("Tipos de hilos", objData.msg ,"success");
+                    tableTipoHilos.api().ajax.reload(function()
+                    {
+                        fntActualizarTipoHilo();
+                        fntEliminarTipoHilo();
+                    });
+                }
+                else
+                {
+                    swal("Error", objData.msg , "error");  
+                }
+            }
+        }
+    }
 });
 
 //id de datatables
@@ -32,7 +77,7 @@ $('#tableTipoHilos').DataTable();
 function openModal() 
 {
     //para limpiar el modal
-    document.querySelector('#idTipoHilos').value = "";
+    document.querySelector('#idTipoHilo').value = "";
     document.querySelector('.modal-header').classList.replace("headerActualizar", "headerRegistro");
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
     document.querySelector('#btnTexto').innerHTML = "Guardar";
@@ -40,4 +85,110 @@ function openModal()
     document.querySelector('#formTipoHilo').reset();
 
     $('#modalFromTipoHilos').modal('show');
+}
+
+//para que cargue desde que se carga el documento
+window.addEventListener('load', function()
+{
+    fntActualizarTipoHilo();
+    fntEliminarTipoHilo();
+}, false);
+
+//para asignar la funcion a todos los id btnActualizarTipoHilo
+function fntActualizarTipoHilo()
+{
+    var btnActualizarTipoHilo = document.querySelectorAll(".btnActualizarTipoHilo");
+    btnActualizarTipoHilo.forEach(function(btnActualizarTipoHilo)
+    {
+        btnActualizarTipoHilo.addEventListener('click', function()
+        {
+            document.querySelector('#tituloModal').innerHTML = "Actualizar Tipo";
+            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+            //Mostrar datos en formulario
+            var idtipoHilo = this.getAttribute("rl");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/TipoHilos/getTipoHilo/'+idtipoHilo;
+            request.open("GET", ajaxUrl, true);
+            request.send();
+
+            //para obtener la respuesta a la peticion
+            request.onreadystatechange = function()
+            {
+                if (request.readyState == 4 && request.status == 200) 
+                {
+                    var objData = JSON.parse(request.responseText);
+
+                    //validar los datos a mostrar
+                    if (objData.status) 
+                    {
+                        document.querySelector('#idTipoHilo').value = objData.data.idtipoHilo;
+                        document.querySelector('#txtNombreTipoHilos').value =objData.data.tipo;
+
+                        $('#modalFromTipoHilos').modal('show');
+
+                    }
+                    else
+                    {
+                        swal("Error", objData.msg , "error");
+                    }
+                }
+            }
+        });
+    });
+}
+
+//eliminar un tipo de hilo
+function fntEliminarTipoHilo()
+{
+    var btnEliminarTipoHilo = document.querySelectorAll(".btnEliminarTipoHilo");
+    btnEliminarTipoHilo.forEach(function(btnEliminarTipoHilo) {
+        btnEliminarTipoHilo.addEventListener('click', function()
+        {
+            var idtipoHilo = this.getAttribute("rl");
+            swal({
+                title: "Eliminar tipo",
+                text: "¿Seguro que quiere eliminar este tipo?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function(isConfirm) 
+            {
+                
+                if (isConfirm) 
+                {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url+'/TipoHilos/eliminarTipoHilo/';
+                    var strData = "idTIpoHilo="+idtipoHilo;
+                    request.open("POST",ajaxUrl,true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(strData);
+                    request.onreadystatechange = function()
+                    {
+                        if(request.readyState == 4 && request.status == 200)
+                        {
+                            var objData = JSON.parse(request.responseText);
+                            if(objData.estado)
+                            {
+                                swal("Eliminar!", objData.msg , "success");
+                                tableTipoHilos.api().ajax.reload(function()
+                                {
+                                    fntActualizarTipoHilo();
+                                    fntEliminarTipoHilo();
+                                });
+                            }else
+                            {
+                                swal("Atención!", objData.msg , "error");
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
 }
