@@ -46,5 +46,49 @@
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        //un usuario
+        public function setUsuario()
+        {
+            if ($_POST)
+            {
+                if(empty($_POST['txtUsuario']) || empty($_POST['txtContraseña']) || empty($_POST['listEstado']) || empty($_POST['listIdRol']) || empty($_POST['listIdPersonal']))
+                {
+                    $arrResponsive = array("status" => false, "msg" => 'Datos incorrectos');
+                }
+                else
+                {
+                    $intIdUsuario = strClean($_POST['idUsuario']);
+                    $strUsuario = strClean($_POST['txtUsuario']);
+                    $strContraseña = strClean($_POST['txtContraseña']);
+                    $intEstado = strClean($_POST['listEstado']);
+                    $intIdRol = strClean($_POST['listIdRol']);
+                    $intIdPersonal = strClean($_POST['listIdPersonal']);
+
+                    $request_usuario = $this->model->insertUsuario($intIdUsuario,
+                                                                $strUsuario,
+                                                                $strContraseña,
+                                                                $intEstado,
+                                                                $intIdRol,
+                                                                $intIdPersonal);
+                    
+                    //proceso para almacernar y mostrar mensaje
+                    if ($request_usuario > 0) 
+                    {
+                        $arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente');
+                    }
+                    else if ($request_usuario == 'exist') 
+                    {
+                        $arrResponse = array('estado' => false, 'msg' => 'Ya existe el usuario');
+                    }
+                    else
+                    {
+                        $arrResponse = array('estado' => false, "msg" => 'No se puede almacenar los datos');
+                    }
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            }
+            die();
+        }
     }
 ?>

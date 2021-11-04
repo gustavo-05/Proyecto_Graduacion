@@ -29,7 +29,36 @@ document.addEventListener('DOMContentLoaded', function() {
             [0, "asc"]
         ]
     });
-});
+
+    //nuevo usuario y validacion de campos
+    var formUsuario = document.querySelector("#formUsuario");
+    formUsuario.onsubmit = function(e)
+    {
+        e.preventDefault();
+
+        var intIdUsuario = document.querySelector('#idUsuario').value;
+        var strUsuario = document.querySelector('#txtUsuario').value;
+        var strContraseña = document.querySelector('#txtContraseña').value;
+        var intEstado = document.querySelector('#listEstado').value;
+        var intIdRol = document.querySelector('#listIdRol').value;
+        var intIdPersonal = document.querySelector('#listIdPersonal').value;
+
+        //validación de los campos obligatorios
+        if(strUsuario == '' || strContraseña == '' || intEstado == '' || intIdRol =='' || intIdPersonal == '')
+        {
+            swal("Atención", "llenar campos obligatorios", "error");
+            return false;
+        }
+
+        //capturando datos por medio de ajax
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/Usuarios/setUsuario';
+        var formData = new FormData(formUsuario);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        
+    }
+}, false);
 
 window.addEventListener('load', function() {
         fntRolesUsuario();
