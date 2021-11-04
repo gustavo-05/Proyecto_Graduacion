@@ -57,6 +57,22 @@
             die();
         }
 
+        //para la funcion de la lista a mostrar en el formulario de usuarios
+        public function getSelectRoles()
+        {
+            $htmlOptions = "";
+            $arrData = $this->model->selectRoles();
+            if(count($arrData) > 0 ){
+                for ($i=0; $i < count($arrData); $i++) { 
+                    if($arrData[$i]['estado'] == 1 ){
+                    $htmlOptions .= '<option value="'.$arrData[$i]['idRol'].'">'.$arrData[$i]['rol'].'</option>';
+                    }
+                }
+            }
+            echo $htmlOptions;
+            die();      
+        }
+
         //para cargar un rol al formulario
         public function getRol(int $idRol)
         {

@@ -10,7 +10,9 @@
         public function selectTipoHilos()
         {
             //para recuperar datos de la base de datos
-            $sql = "SELECT * FROM tipoHilos";
+            $sql = "SELECT t.idTipoHilo, t.tipo
+            FROM tipohilos AS t
+            WHERE status > 0";
             $request = $this->select_all($sql);
             return $request;
         }
@@ -50,16 +52,16 @@
         //actualizar un dato en la tabla tipo de Hilos
         public function updateTipoHilo(int $idtipoHilo, string $tipo)
         {
-			$this->intIdTipoHilo = $idtipoHilo;
+			$this->intIdtipoHilo = $idtipoHilo;
 			$this->strTipo = $tipo;
 
-			$sql = "SELECT * FROM tipoHilos WHERE tipo = '$this->strTipo' AND idTipoHilo != $this->intIdTipoHilo";
+			$sql = "SELECT * FROM tipoHilos WHERE tipo = '$this->strTipo' AND idTipoHilo != $this->intIdtipoHilo";
 			$request = $this->select_all($sql);
 
 			if(empty($request))
 			{
-				$sql = "UPDATE tipoHilos SET tipo = ? WHERE idTipoHilo = $this->intIdTipoHilo ";
-				$arrData = array($this->strTipoHilo);
+				$sql = "UPDATE tipoHilos SET tipo = ? WHERE idTipoHilo = $this->intIdtipoHilo";
+				$arrData = array($this->strTipo);
 				$request = $this->update($sql,$arrData);
 			}else{
 				$request = "exist";
@@ -71,11 +73,11 @@
 		public function deleteTipoHilo(int $idtipoHilo)
 		{
 			$this->intIdtipoHilo = $idtipoHilo;
-			$sql = "SELECT * FROM hilos WHERE idTipoHilos = $this->intIdtipoHilo";
+			$sql = "SELECT * FROM hilos WHERE idTipoHilo = $this->intIdtipoHilo";
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
-				$sql = "UPDATE tipoHilos WHERE idTipoHilo = $this->intIdtipoHilo ";
+				$sql = "UPDATE tipoHilos SET status = ? WHERE idTipoHilo = $this->intIdtipoHilo ";
 				$arrData = array(0);
 				$request = $this->update($sql,$arrData);
 				if($request)

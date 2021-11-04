@@ -15,6 +15,8 @@
     <!-- Data table plugin-->
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?= media(); ?>/js/plugins/bootstrap-select.min.js"></script>
+
     <!-- Plugins para exportar en archivos, PDF,EXCEL...-->
     <script type="text/javascript" language="javascript" scr="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" language="javascript" scr="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

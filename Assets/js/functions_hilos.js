@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function()
             "dataSrc": ""
         },
         "columns": [
-            { "data": "idHilos" },
+            { "data": "idHilo" },
             { "data": "color" },
             { "data": "código" },
             { "data": "tipo" },

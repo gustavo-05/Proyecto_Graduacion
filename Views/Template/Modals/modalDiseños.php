@@ -16,7 +16,7 @@
                <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
                   <label class="control-label" for="txtNombreDiseños">Nombre del diseño</label><span class="text-danger"> *</span>
-                  <input class="form-control" id="txtNombreDiseños" name="txtNombreDiseños" type="text" placeholder="Ingrese el color" required="">
+                  <input class="form-control" id="txtNombreDiseños" name="txtNombreDiseños" type="text" placeholder="Ingrese el diseño" required="">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Descripción</label>

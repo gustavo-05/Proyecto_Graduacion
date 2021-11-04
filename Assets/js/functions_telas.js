@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function()
             "dataSrc": ""
         },
         "columns": [
-            { "data": "idTelas" },
+            { "data": "idTela" },
             { "data": "color" },
             { "data": "cantidad" },
             { "data": "descripción" },

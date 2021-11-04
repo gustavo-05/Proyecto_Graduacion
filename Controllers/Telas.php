@@ -26,17 +26,17 @@
                 //para los botones del crud
                 //boton editar información
                 $arrData[$i]['editar'] = '<div class="text-center">
-                <button class="btn btn-outline-warning btnEditarTela" rl="'.$arrData[$i]['idTelas'].'" title="Editar">Editar</button>
+                <button class="btn btn-outline-warning btnEditarTela" rl="'.$arrData[$i]['idTela'].'" title="Editar">Editar</button>
                 </div>';
 
                 //boton actualizar cantidad de hilos
                 $arrData[$i]['actualizar'] = '<div class="text-center">
-                <button class="btn btn-outline-primary btnActualizarTela" rl="'.$arrData[$i]['idTelas'].'" title="Actualizar">Actualizar</button>
+                <button class="btn btn-outline-primary btnActualizarTela" rl="'.$arrData[$i]['idTela'].'" title="Actualizar">Actualizar</button>
                 </div>';
 
                 //boton eliminar
                 $arrData[$i]['eliminar'] = '<div class="text-center">
-                <button class="btn btn-outline-danger btnEliminarTela" rl="'.$arrData[$i]['idTelas'].'" title="Eliminar">Eliminar</button>
+                <button class="btn btn-outline-danger btnEliminarTela" rl="'.$arrData[$i]['idTela'].'" title="Eliminar">Eliminar</button>
                 </div>';
             }
 

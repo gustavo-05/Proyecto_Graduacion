@@ -124,7 +124,7 @@ function fntActualizarTipoHilo()
                     //validar los datos a mostrar
                     if (objData.status) 
                     {
-                        document.querySelector('#idTipoHilo').value = objData.data.idtipoHilo;
+                        document.querySelector('#idTipoHilo').value = objData.data.idTipoHilo;
                         document.querySelector('#txtNombreTipoHilos').value =objData.data.tipo;
 
                         $('#modalFromTipoHilos').modal('show');
@@ -164,7 +164,7 @@ function fntEliminarTipoHilo()
                 {
                     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
                     var ajaxUrl = base_url+'/TipoHilos/eliminarTipoHilo/';
-                    var strData = "idTIpoHilo="+idtipoHilo;
+                    var strData = "idTipoHilo="+idtipoHilo;
                     request.open("POST",ajaxUrl,true);
                     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     request.send(strData);

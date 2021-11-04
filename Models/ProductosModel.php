@@ -10,7 +10,7 @@
         public function selectProductos()
         {
             //para recuperar datos de la base de datos
-            $sql = "SELECT p.idProductos, d.nombre, c.color, p.precio, p.cantidad, p.descripción
+            $sql = "SELECT p.idProducto, d.nombre, c.color, p.precio, p.cantidad, p.descripción
             FROM productos AS p
             INNER JOIN diseño AS d
             INNER JOIN color AS c

@@ -10,11 +10,11 @@
         public function selectHilos()
         {
             //para recuperar datos de la base de datos
-            $sql = "SELECT h.idHilos, c.color, h.código, t.tipo, h.cantidad, h.descripción
+            $sql = "SELECT h.idHilo, c.color, h.código, t.tipo, h.cantidad, h.descripción
             FROM hilos AS h
             INNER JOIN tipoHilos AS t
             INNER JOIN color AS c
-            ON h.idcolor=c.idColor AND h.idTipoHilos = t.idTipoHilos";
+            ON h.idcolor=c.idColor AND h.idTipoHilo = t.idTipoHilo";
             $request = $this->select_all($sql);
             return $request;
         }

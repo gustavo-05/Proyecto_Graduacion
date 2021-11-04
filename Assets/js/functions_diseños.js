@@ -24,6 +24,52 @@ document.addEventListener('DOMContentLoaded', function()
         "iDisplayLength": 50,
         "order": [[0, "asc"]]
     });
+
+    //nuevo diseño y validacion de campos
+    var formDiseño = document.querySelector("#formDiseño");
+    formDiseño.onsubmit = function(e)
+    {
+        e.preventDefault();
+
+        var intIdDiseño = document.querySelector('#idDiseño').value;
+        var strNombre = document.querySelector('#txtNombreDiseños').value;
+        var strDescripción = document.querySelector('#txtDescripciónDiseños').value;
+        if(strNombre == '') 
+        {
+            swal("Atención", "Debe llenar todos los campos obligatoios." , "error");
+            return false;
+        }
+        //capturando datos por medio de ajax
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/Diseños/setDiseño';
+        var formData = new FormData(formDiseño);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        request.onreadystatechange = function()
+        {
+            if (request.readyState == 4 && request.status == 200) 
+            {
+                var objData = JSON.parse(request.responseText);
+                if(objData.estado)
+                {
+                    //para volver a cargar los datos en los formularios despues de un nuevo ingreso
+
+                    $('#modalFormDiseños').modal("hide");
+                    formDiseño.reset();
+                    swal("Diseños", objData.msg ,"success");
+                    tableDiseños.api().ajax.reload(function()
+                    {
+                        fntActualizarDiseño();
+                        fntEliminarColor();
+                    });
+                }
+                else
+                {
+                    swal("Error", objData.msg , "error");  
+                }
+            }
+        }
+    }
 });
 
 //id de datatables
@@ -41,4 +87,111 @@ function openModal()
     document.querySelector('#formDiseño').reset();
 
     $('#modalFromDiseños').modal('show');
+}
+
+//para que cargue desde que se carga el documento
+window.addEventListener('load', function()
+{
+    fntActualizarDiseño();
+    fntEliminarDiseño();
+}, false);
+
+//para asignar la funcion a todos los id btnActualizarDiseño
+function fntActualizarDiseño()
+{
+    var btnActualizarDiseño = document.querySelectorAll(".btnActualizarDiseño");
+    btnActualizarDiseño.forEach(function(btnActualizarDiseño)
+    {
+        btnActualizarDiseño.addEventListener('click', function()
+        {
+            document.querySelector('#tituloModal').innerHTML = "Actualizar Diseño";
+            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+            //Mostrar datos en formulario
+            var iddiseño = this.getAttribute("rl");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Diseños/getDiseño/'+iddiseño;
+            request.open("GET", ajaxUrl, true);
+            request.send();
+
+            //para obtener la respuesta a la peticion
+            request.onreadystatechange = function()
+            {
+                if (request.readyState == 4 && request.status == 200) 
+                {
+                    var objData = JSON.parse(request.responseText);
+
+                    //validar los datos a mostrar
+                    if (objData.status) 
+                    {
+                        document.querySelector('#idDiseño').value = objData.data.idDiseño;
+                        document.querySelector('#txtNombreDiseños').value =objData.data.nombre;
+                        document.querySelector('#txtDescripciónDiseños').value =objData.data.descripción;
+
+                        $('#modalFromDiseños').modal('show');
+
+                    }
+                    else
+                    {
+                        swal("Error", objData.msg , "error");
+                    }
+                }
+            }
+        });
+    });
+}
+
+//eliminar un Diseño
+function fntEliminarDiseño()
+{
+    var btnEliminarDiseño = document.querySelectorAll(".btnEliminarDiseño");
+    btnEliminarDiseño.forEach(function(btnEliminarDiseño) {
+        btnEliminarDiseño.addEventListener('click', function()
+        {
+            var iddiseño = this.getAttribute("rl");
+            swal({
+                title: "Eliminar diseño",
+                text: "¿Seguro que quiere eliminar este diseño?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function(isConfirm) 
+            {
+                
+                if (isConfirm) 
+                {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url+'/Diseños/eliminarDiseño/';
+                    var strData = "idDiseño="+iddiseño;
+                    request.open("POST",ajaxUrl,true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(strData);
+                    request.onreadystatechange = function()
+                    {
+                        if(request.readyState == 4 && request.status == 200)
+                        {
+                            var objData = JSON.parse(request.responseText);
+                            if(objData.estado)
+                            {
+                                swal("Eliminar!", objData.msg , "success");
+                                tableDiseños.api().ajax.reload(function()
+                                {
+                                    fntActualizarDiseño();
+                                    fntEliminarDiseño();
+                                });
+                            }else
+                            {
+                                swal("Atención!", objData.msg , "error");
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
 }

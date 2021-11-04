@@ -26,6 +26,54 @@ document.addEventListener('DOMContentLoaded', function()
         "iDisplayLength": 100,
         "order": [[0, "asc"]]
     });
+
+    //nuevo personal y validacion de campos
+    var formPersona = document.querySelector("#formPersona");
+    formPersona.onsubmit = function(e)
+    {
+        e.preventDefault();
+
+        var intIdPersonal = document.querySelector('#idPersonal').value;
+        var strNombre = document.querySelector('#txtNombrePersonal').value;
+        var strApellido = document.querySelector('#txtApellidoPersonal').value;
+        var strDirección = document.querySelector('#txtDirecciónPersonal').value;
+        var intTeléfono = document.querySelector('#intTeléfonoPersonal').value;
+        if(strNombre == '' || strApellido == ''|| strDirección == '') 
+        {
+            swal("Atención", "Debe llenar todos los campos obligatoios." , "error");
+            return false;
+        }
+        //capturando datos por medio de ajax
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/Personal/setPersona';
+        var formData = new FormData(formPersona);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        request.onreadystatechange = function()
+        {
+            if (request.readyState == 4 && request.status == 200) 
+            {
+                var objData = JSON.parse(request.responseText);
+                if(objData.estado)
+                {
+                    //para volver a cargar los datos en los formularios despues de un nuevo ingreso
+
+                    $('#modalFormPersonal').modal("hide");
+                    formPersona.reset();
+                    swal("Personal", objData.msg ,"success");
+                    tablePersonal.api().ajax.reload(function()
+                    {
+                        fntActualizarPersona();
+                        fntEliminarPersona();
+                    });
+                }
+                else
+                {
+                    swal("Error", objData.msg , "error");  
+                }
+            }
+        }
+    }
 });
 
 //id de datatables
@@ -42,4 +90,113 @@ function openModal()
     document.querySelector('#formPersona').reset();
 
     $('#modalFromPersonal').modal('show');
+}
+
+//para que cargue desde que se carga el documento
+window.addEventListener('load', function()
+{
+    fntActualizarPersona();
+    fntEliminarPersona();
+}, false);
+
+//para asignar la funcion a todos los id btnActualizar
+function fntActualizarPersona()
+{
+    var btnActualizarPersona = document.querySelectorAll(".btnActualizarPersona");
+    btnActualizarPersona.forEach(function(btnActualizarPersona)
+    {
+        btnActualizarPersona.addEventListener('click', function()
+        {
+            document.querySelector('#tituloModal').innerHTML = "Actualizar Persona";
+            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+            //Mostrar datos en formulario
+            var idpersonal = this.getAttribute("rl");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Personal/getPersona/'+idpersonal;
+            request.open("GET", ajaxUrl, true);
+            request.send();
+
+            //para obtener la respuesta a la peticion
+            request.onreadystatechange = function()
+            {
+                if (request.readyState == 4 && request.status == 200) 
+                {
+                    var objData = JSON.parse(request.responseText);
+
+                    //validar los datos a mostrar
+                    if (objData.status) 
+                    {
+                        document.querySelector('#idPersonal').value = objData.data.idPersonal;
+                        document.querySelector('#txtNombrePersonal').value =objData.data.nombre;
+                        document.querySelector('#txtApellidoPersonal').value =objData.data.apellido;
+                        document.querySelector('#txtDirecciónPersonal').value =objData.data.dirección;
+                        document.querySelector('#intTeléfonoPersonal').value =objData.data.teléfono;
+
+                        $('#modalFromPersonal').modal('show');
+
+                    }
+                    else
+                    {
+                        swal("Error", objData.msg , "error");
+                    }
+                }
+            }
+        });
+    });
+}
+
+//eliminar un color
+function fntEliminarPersona()
+{
+    var btnEliminarPersona = document.querySelectorAll(".btnEliminarPersona");
+    btnEliminarPersona.forEach(function(btnEliminarPersona) {
+        btnEliminarPersona.addEventListener('click', function()
+        {
+            var idpersonal = this.getAttribute("rl");
+            swal({
+                title: "Eliminar Personal",
+                text: "¿Seguro que quiere eliminar a esta persona?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function(isConfirm) 
+            {
+                
+                if (isConfirm) 
+                {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url+'/Personal/eliminarPersona/';
+                    var strData = "idPersonal="+idpersonal;
+                    request.open("POST",ajaxUrl,true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(strData);
+                    request.onreadystatechange = function()
+                    {
+                        if(request.readyState == 4 && request.status == 200)
+                        {
+                            var objData = JSON.parse(request.responseText);
+                            if(objData.estado)
+                            {
+                                swal("Eliminar!", objData.msg , "success");
+                                tablePersonal.api().ajax.reload(function()
+                                {
+                                    fntActualizarPersona();
+                                    fntEliminarPersona();
+                                });
+                            }else
+                            {
+                                swal("Atención!", objData.msg , "error");
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
 }

@@ -69,18 +69,18 @@
             if($intIdTipoHilo == 0)
             {
                 //limpiar campo y preparalo para recibir datos
-                $request_tipoHilos = $this->model->insertTipoHilo($strTipo);
+                $request_tipoHilo = $this->model->insertTipoHilo($strTipo);
                 $option = 1;
             }
             else
             {
                 //para actualizar
-                $request_tipoHilos = $this->model->updateTipoHilo($intIdTipoHilo, $strTipo);
+                $request_tipoHilo = $this->model->updateTipoHilo($intIdTipoHilo, $strTipo);
                 $option = 2;
             }
 
             //proceso para almacernar y mostrar mensaje
-            if ($request_tipoHilos > 0) 
+            if ($request_tipoHilo > 0) 
             {
                 if($option == 1)
                 {
@@ -91,7 +91,7 @@
                     $arrResponse = array('estado' => true, 'msg' => 'Datos actualizados correctamente');
                 }
             }
-            else if ($request_tipoHilos == 'exist') 
+            else if ($request_tipoHilo == 'exist') 
             {
                 $arrResponse = array('estado' => false, 'msg' => 'Ya existe el tipo');
             }
@@ -108,7 +108,7 @@
         {
             if($_POST){
                 $intIdTipoHilo = intval($_POST['idTipoHilo']);
-                $requestDelete = $this->model->deleteTipoHilo($intIdtipoHilo);
+                $requestDelete = $this->model->deleteTipoHilo($intIdTipoHilo);
                 if($requestDelete == 'ok')
                 {
                     $arrResponse = array('estado' => true, 'msg' => 'Eliminado correctamente');

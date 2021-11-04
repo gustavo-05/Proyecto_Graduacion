@@ -28,14 +28,14 @@
                     </select>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="listRol">Rol</label><span class="text-danger"> *</span>
-                    <select class="form-control" id="listRol" name="listRol" required>
+                  <label class="control-label" for="listIdRol">Rol</label><span class="text-danger"> *</span>
+                    <select class="form-control" data-live-search="true" id="listIdRol" name="listIdRol" required>
                       
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="listPersonal">Personal Asociado</label><span class="text-danger"> *</span>
-                    <select class="form-control" id="listPersonal" name="lisPersonal" required>
+                    <label class="control-label" for="listIdPersonal">Personal Asociado</label><span class="text-danger"> *</span>
+                    <select class="form-control" data-live-search="true" id="listIdPersonal" name="listIdPersonal" required>
                       
                     </select>
                 </div>

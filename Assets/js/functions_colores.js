@@ -24,6 +24,52 @@ document.addEventListener('DOMContentLoaded', function()
         "iDisplayLength": 100,
         "order": [[0, "asc"]]
     });
+
+    //nuevo Color y validacion de campos
+    var formColor = document.querySelector("#formColor");
+    formColor.onsubmit = function(e)
+    {
+        e.preventDefault();
+
+        var intIdColor = document.querySelector('#idColor').value;
+        var strColor = document.querySelector('#txtNombreColores').value;
+        var strDescripción = document.querySelector('#txtDescripciónColores').value;
+        if(strColor == '') 
+        {
+            swal("Atención", "Debe llenar todos los campos obligatoios." , "error");
+            return false;
+        }
+        //capturando datos por medio de ajax
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url+'/Colores/setColor';
+        var formData = new FormData(formColor);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        request.onreadystatechange = function()
+        {
+            if (request.readyState == 4 && request.status == 200) 
+            {
+                var objData = JSON.parse(request.responseText);
+                if(objData.estado)
+                {
+                    //para volver a cargar los datos en los formularios despues de un nuevo ingreso
+
+                    $('#modalFormColores').modal("hide");
+                    formColor.reset();
+                    swal("Colores", objData.msg ,"success");
+                    tableColores.api().ajax.reload(function()
+                    {
+                        fntActualizarColor();
+                        fntEliminarColor();
+                    });
+                }
+                else
+                {
+                    swal("Error", objData.msg , "error");  
+                }
+            }
+        }
+    }
 });
 
 //id de datatables
@@ -40,4 +86,111 @@ function openModal()
     document.querySelector('#formColor').reset();
 
     $('#modalFromColores').modal('show');
+}
+
+//para que cargue desde que se carga el documento
+window.addEventListener('load', function()
+{
+    fntActualizarColor();
+    fntEliminarColor();
+}, false);
+
+//para asignar la funcion a todos los id btnActualizarTipoHilo
+function fntActualizarColor()
+{
+    var btnActualizarColor = document.querySelectorAll(".btnActualizarColor");
+    btnActualizarColor.forEach(function(btnActualizarColor)
+    {
+        btnActualizarColor.addEventListener('click', function()
+        {
+            document.querySelector('#tituloModal').innerHTML = "Actualizar Color";
+            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+            //Mostrar datos en formulario
+            var idcolor = this.getAttribute("rl");
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Colores/getColor/'+idcolor;
+            request.open("GET", ajaxUrl, true);
+            request.send();
+
+            //para obtener la respuesta a la peticion
+            request.onreadystatechange = function()
+            {
+                if (request.readyState == 4 && request.status == 200) 
+                {
+                    var objData = JSON.parse(request.responseText);
+
+                    //validar los datos a mostrar
+                    if (objData.status) 
+                    {
+                        document.querySelector('#idColor').value = objData.data.idColor;
+                        document.querySelector('#txtNombreColores').value =objData.data.color;
+                        document.querySelector('#txtDescripciónColores').value =objData.data.descripción;
+
+                        $('#modalFromColores').modal('show');
+
+                    }
+                    else
+                    {
+                        swal("Error", objData.msg , "error");
+                    }
+                }
+            }
+        });
+    });
+}
+
+//eliminar un color
+function fntEliminarColor()
+{
+    var btnEliminarColor = document.querySelectorAll(".btnEliminarColor");
+    btnEliminarColor.forEach(function(btnEliminarColor) {
+        btnEliminarColor.addEventListener('click', function()
+        {
+            var idcolor = this.getAttribute("rl");
+            swal({
+                title: "Eliminar color",
+                text: "¿Seguro que quiere eliminar este color?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function(isConfirm) 
+            {
+                
+                if (isConfirm) 
+                {
+                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                    var ajaxUrl = base_url+'/Colores/eliminarColor/';
+                    var strData = "idColor="+idcolor;
+                    request.open("POST",ajaxUrl,true);
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    request.send(strData);
+                    request.onreadystatechange = function()
+                    {
+                        if(request.readyState == 4 && request.status == 200)
+                        {
+                            var objData = JSON.parse(request.responseText);
+                            if(objData.estado)
+                            {
+                                swal("Eliminar!", objData.msg , "success");
+                                tableColores.api().ajax.reload(function()
+                                {
+                                    fntActualizarColor();
+                                    fntEliminarColor();
+                                });
+                            }else
+                            {
+                                swal("Atención!", objData.msg , "error");
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
 }

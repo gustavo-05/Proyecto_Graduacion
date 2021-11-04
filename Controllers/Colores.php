@@ -39,5 +39,94 @@
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        //para cargar un color al formulario
+        public function getColor(int $idColor)
+        {
+            $intIdColor = intval(strClean($idColor));
+            if ($intIdColor > 0) 
+            {
+                $arrData = $this->model->selectColor($intIdColor);
+                if (empty($arrData)) 
+                {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+                }
+                else
+                {
+                    $arrResponse = array('status' => true, 'data' => $arrData);
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);   
+            }
+            die();
+        }
+
+        //para insertar un nuevo color
+        public function setColor()
+        {
+            $intIdColor = intval($_POST['idColor']);
+            $strColor = strClean($_POST['txtNombreColores']);
+            $strDescripción = strClean($_POST['txtDescripciónColores']);
+
+            //validación de los campos
+            if($intIdColor == 0)
+            {
+                //limpiar campo y preparalo para recibir datos
+                $request_colores = $this->model->insertColor($strColor, $strDescripción);
+                $option = 1;
+            }
+            else
+            {
+                //para actualizar
+                $request_colores = $this->model->updateColor($intIdColor, $strColor, $strDescripción);
+                $option = 2;
+            }
+
+            //proceso para almacernar y mostrar mensaje
+            if ($request_colores > 0) 
+            {
+                if($option == 1)
+                {
+                    $arrResponse = array('estado' => true, 'msg' => 'Datos guardados correctamente');
+                }
+                else if($option == 2)
+                {
+                    $arrResponse = array('estado' => true, 'msg' => 'Datos actualizados correctamente');
+                }
+            }
+            else if ($request_colores == 'exist') 
+            {
+                $arrResponse = array('estado' => false, 'msg' => 'Ya existe el color');
+            }
+            else
+            {
+                $arrResponse = array('estado' => false, "msg" => 'No se puede almacenar los datos');
+            }
+            echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        //para eliminar un color
+        public function eliminarColor()
+        {
+            if($_POST){
+                $intIdColor = intval($_POST['idColor']);
+                $requestDelete = $this->model->deleteColor($intIdColor);
+                if($requestDelete == 'ok')
+                {
+                    $arrResponse = array('estado' => true, 'msg' => 'Eliminado correctamente');
+                }
+                else if($requestDelete == 'exist')
+                {
+                    $arrResponse = array('estado' => false, 'msg' => 'No se pudo eliminar el color por estar vinculado a un hilo o tela.');
+                }
+                else
+                {
+                    $arrResponse = array('estado' => false, 'msg' => 'Error al eliminar el color.');
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            }
+            die();
+        }
+
     }
 ?>

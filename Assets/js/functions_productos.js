@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function()
             "dataSrc": ""
         },
         "columns": [
-            { "data": "idProductos" },
+            { "data": "idProducto" },
             { "data": "nombre" },
             { "data": "color" },
             { "data": "precio" },

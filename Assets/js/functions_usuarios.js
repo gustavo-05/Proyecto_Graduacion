@@ -31,9 +31,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+window.addEventListener('load', function() {
+        fntRolesUsuario();
+        fntPersonalUsuario();
+}, false);
+
 //id de datatables
 $('#tableUsuarios').DataTable();
 
+//para extraer lista de roles desde la base de datos 
+function fntRolesUsuario()
+{
+    var ajaxUrl = base_url+'/Roles/getSelectRoles';
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    request.open("GET",ajaxUrl,true);
+    request.send();
+
+    request.onreadystatechange = function()
+    {
+        if(request.readyState == 4 && request.status == 200)
+        {
+            document.querySelector('#listIdRol').innerHTML = request.responseText;
+            document.querySelector('#listIdRol').value = 1;
+            $('#listIdRol');
+        }
+    }
+    
+}
+
+//para extraer lista de roles desde la base de datos 
+function fntPersonalUsuario()
+{
+    var ajaxUrl = base_url+'/Personal/getSelectPersonal';
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    request.open("GET",ajaxUrl,true);
+    request.send();
+
+    request.onreadystatechange = function()
+    {
+        if(request.readyState == 4 && request.status == 200)
+        {
+            document.querySelector('#listIdPersonal').innerHTML = request.responseText;
+            document.querySelector('#listIdPersonal').value = 1;
+            $('#listIdPersonal');
+        }
+    }
+    
+}
 
 function openModal() 
 {
