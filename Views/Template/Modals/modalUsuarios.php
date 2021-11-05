@@ -48,3 +48,61 @@
   </div>
 </div>
 
+
+<!--  Modal para cargar los datos del usuario cuando se desee visualizarlos -->
+
+<!-- Modal -->
+<div class="modal fade" id="modalVerUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header header-VerUsuario">
+        <h5 class="modal-title" id="tituloModal">Datos de Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>Nombre</td>
+              <td id="tablaNombre"></td>
+            </tr>
+            <tr>
+              <td>Apellido</td>
+              <td id="tablaApellido"></td>
+            </tr>
+            <tr>
+              <td>Usuario</td>
+              <td id="tablaUsuario"></td>
+            </tr>
+            <tr>
+              <td>Dirección</td>
+              <td id="tablaDirección"></td>
+            </tr>
+            <tr>
+              <td>Teléfono</td>
+              <td id="tablaTeléfono"></td>
+            </tr>
+            <tr>
+              <td>Rol</td>
+              <td id="tablaRol"></td>
+            </tr>
+            <tr>
+              <td>Estado</td>
+              <td id="tablaEstado"></td>
+            </tr>
+            <tr>
+              <td>Fecha de registro</td>
+              <td id="tablaFecha"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -22,7 +22,8 @@
             FROM usuario AS u
             INNER JOIN personal AS p
             INNER JOIN rol AS r
-            ON u.idRol = r.idRol AND u.idPersonal = p.idPersonal";
+            ON u.idRol = r.idRol AND u.idPersonal = p.idPersonal
+            WHERE u.estado != 0";
             $request = $this->select_all($sql);
             return $request;
         }
@@ -30,16 +31,58 @@
         //para insertar un nuevo usuario
         public function insertUsuario(string $usuario, string $contraseña, int $estado, int $rol, int $personal)
         {
+            $return = "";
             $this->strUsuario=$usuario;
             $this->strContraseña=$contraseña;
             $this->intEstado=$estado;
             $this->intIdRol=$rol;
             $this->intIdPersonal=$personal; 
-            return 0;
+            
 
             $sql = "SELECT * FROM usuario WHERE
-            usuario = '{$this->strUsuario}' OR idPersonal = '{$this->intIdPersonal}'";
+            usuario = '{$this->strUsuario}'";
             $request =$this->select_all($sql);
+
+            //insertar
+            if (empty($request))
+            {
+                $query_insert = "INSERT INTO usuario(usuario, contra, estado, idRol, idPersonal) VALUES(?, ?, ?, ?, ?)";
+                $arrData = array($this->strUsuario, $this->strContraseña, $this->intEstado, $this->intIdRol, $this->intIdPersonal);
+                $request_insert = $this->insert($query_insert,$arrData);
+                $return = $query_insert;
+            }
+            else
+            {
+                $return = "exist";
+            }
+            return $return;
+        }
+
+        //para ver un usuario en la tabla
+        public function selectUsuarioTabla(int $idUsuario)
+        {
+            $this->intIdUsuario = $idUsuario;
+            $sql = "SELECT p.nombre, p.apellido, u.usuario, p.dirección, p.teléfono, r.rol, r.estado, DATE_FORMAT(u.fechaRegistro, '%d-%m-%y') AS fechaRegistro
+            FROM personal p
+            INNER JOIN usuario AS u
+            INNER JOIN rol AS r
+            ON u.idRol = r.idRol AND u.idPersonal = p.idPersonal
+            WHERE u.idUsuario = $this->intIdUsuario";
+
+            $request = $this->select($sql);
+            return $request;   
+        }
+
+        //para cargar un usuario a la tabla y cargarlo al formulario
+        public function selectUsuario(int $idUsuario)
+        {
+            //Buscar color en la base de datos
+            $this->intIdUsuario = $idUsuario;
+            $sql ="SELECT u.usuario, u. usuario, u.estado, u.estado, u.idRol, u.idPersonal
+            FROM usuario AS u
+            WHERE idUsuario = $this->intIdUsuario";
+            $request = $this->select($sql);
+            return $request;
         }
     } 
 ?>

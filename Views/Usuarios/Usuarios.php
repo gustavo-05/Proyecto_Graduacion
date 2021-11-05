@@ -31,6 +31,7 @@
                                         <th>Usuario</th>
                                         <th>Rol</th>
                                         <th>Estado</th>
+                                        <th>Ver</th>
                                         <th>Actualizar</th>
                                         <th>Eliminar</th>
                                     </tr>

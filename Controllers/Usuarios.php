@@ -31,6 +31,11 @@
                     $arrData[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
                 }
 
+                //boton Ver datos de usuario
+                $arrData[$i]['ver'] = '<div class="text-center">
+                <button class="btn btn-outline-info btnVerUsuario" rl="'.$arrData[$i]['idUsuario'].'" title="Ver">Ver</button>
+                </div>';
+
                 //boton actualizar
                 $arrData[$i]['actualizar'] = '<div class="text-center">
                 <button class="btn btn-outline-warning btnActualizarUsuario" rl="'.$arrData[$i]['idUsuario'].'" title="Actualizar">Actualizar</button>
@@ -47,7 +52,7 @@
             die();
         }
 
-        //un usuario
+        //validacion de campos e ingreso de nuevo usuario
         public function setUsuario()
         {
             if ($_POST)
@@ -58,19 +63,21 @@
                 }
                 else
                 {
-                    $intIdUsuario = strClean($_POST['idUsuario']);
-                    $strUsuario = strClean($_POST['txtUsuario']);
+                    $intIdUsuario = intval($_POST['idUsuario']);
+                    $strUsuario =strClean($_POST['txtUsuario']);    //strtolower() sirve para comvertir todas las letras a minusculas
                     $strContraseña = strClean($_POST['txtContraseña']);
-                    $intEstado = strClean($_POST['listEstado']);
-                    $intIdRol = strClean($_POST['listIdRol']);
-                    $intIdPersonal = strClean($_POST['listIdPersonal']);
+                    $intEstado = intval($_POST['listEstado']);
+                    $intIdRol = intval($_POST['listIdRol']);
+                    $intIdPersonal = intval($_POST['listIdPersonal']);
 
-                    $request_usuario = $this->model->insertUsuario($intIdUsuario,
-                                                                $strUsuario,
-                                                                $strContraseña,
-                                                                $intEstado,
-                                                                $intIdRol,
-                                                                $intIdPersonal);
+                    //para encriptar la contraseña
+                    $strContraseña = hash("SHA256", $_POST['txtContraseña']);
+                    if($intIdUsuario == 0)
+                    {
+                        //limpiar campo y preparalo para recibir datos
+                        $request_usuario = $this->model->insertUsuario($strUsuario, $strContraseña, $intEstado, $intIdRol, $intIdPersonal);
+                        $option = 1;
+                    }
                     
                     //proceso para almacernar y mostrar mensaje
                     if ($request_usuario > 0) 
@@ -89,6 +96,46 @@
                 echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
             }
             die();
+        }
+
+        //para extraer dato de un usuario
+        public function getUsuarioTabla(int $idUsuario)
+        {
+           $idusuario = intval($idUsuario);
+           if($idusuario > 0) 
+           {
+               $arrData = $this->model->selectUsuarioTabla($idusuario);
+               if (empty($arrData)) 
+                {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+                }
+                else
+                {
+                    $arrResponse = array('status' => true, 'data' => $arrData);
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+           }
+            die(); 
+        }
+
+        //para extraer un dato de la tabla y editar
+        public function getUsuario(int $idUsuario)
+        {
+           $idusuario = intval($idUsuario);
+           if($idusuario > 0) 
+           {
+               $arrData = $this->model->selectUsuario($idusuario);
+               if (empty($arrData)) 
+                {
+                    $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+                }
+                else
+                {
+                    $arrResponse = array('status' => true, 'data' => $arrData);
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+           }
+            die(); 
         }
     }
 ?>

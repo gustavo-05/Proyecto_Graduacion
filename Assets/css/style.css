@@ -26,7 +26,7 @@
 	background-color: #118aaf;
 }
 
-.app sidebar-mini  pace-done{
+.app, .sidebar-mini,  .pace-done{
     background-color: #118aaf;
 }
 
@@ -35,7 +35,7 @@
 }
 
 /*Para darle color a los formularios de roles*/
-.headerRegristro{
+.headerRegistro, .header-VerUsuario{
 	background: #118aaf;
 	color: #FFF;
 }
