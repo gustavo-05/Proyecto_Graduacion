@@ -10,7 +10,7 @@
 			{
 				header('Location: '.base_url().'/login');
 			}
-			//getPermisos(1);
+			getPermisos(1);
         }
 
         public function getPermisosRol(int $idrol)
@@ -36,16 +36,18 @@
                 {
                     for ($i=0; $i < count($arrModulos); $i++)
                     {
-                        $arrPermisos = array('insertar'     => $arrPermisosRol[$i]['insertar'], 
-                                             'consultar'    => $arrPermisosRol[$i]['consultar'], 
-                                             'actualizar'   => $arrPermisosRol[$i]['actualizar'], 
-                                             'eliminar'     => $arrPermisosRol[$i]['eliminar'] 
-                                            );
-                        //validacion
-                        if($arrModulos[$i]['idModulo'] == $arrPermisosRol[$i]['idModulo'])
+                        $arrPermisos = array('insertar' => 0, 'consultar' => 0, 'actualizar' => 0, 'eliminar' => 0);
+                        if(isset($arrPermisosRol[$i]))
                         {
-                            $arrModulos[$i]['permisos'] = $arrPermisos;
+
+                            $arrPermisos = array('insertar'     => $arrPermisosRol[$i]['insertar'], 
+                                                 'consultar'    => $arrPermisosRol[$i]['consultar'], 
+                                                 'actualizar'   => $arrPermisosRol[$i]['actualizar'], 
+                                                 'eliminar'     => $arrPermisosRol[$i]['eliminar'] 
+                                                );
                         }
+                        $arrModulos[$i]['permisos'] = $arrPermisos;
+                        
 
                     }
                 }

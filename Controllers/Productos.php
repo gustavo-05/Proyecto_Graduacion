@@ -10,7 +10,7 @@
 			{
 				header('Location: '.base_url().'/login');
 			}
-			//getPermisos(1);
+			getPermisos(4);
         }
 
         public function productos()

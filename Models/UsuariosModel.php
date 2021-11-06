@@ -17,13 +17,20 @@
         //para la funcion de seleccionar los usuarios
         public function selectUsuarios()
         {
+            //para la validación del super usuario
+            $whereAdmin = "";
+			if($_SESSION['idUsuarioSesión'] != 1 )
+            {
+				$whereAdmin = " AND u.idUsuario != 1 ";
+			}
+
             //para recuperar datos de usuarios la base de datos
             $sql = "SELECT u.idUsuario, u.usuario, p.nombre, p.apellido, r.rol, u.estado
             FROM usuario AS u
             INNER JOIN personal AS p
             INNER JOIN rol AS r
             ON u.idRol = r.idRol AND u.idPersonal = p.idPersonal
-            WHERE u.estado != 0";
+            WHERE u.estado != 0".$whereAdmin;
             $request = $this->select_all($sql);
             return $request;
         }

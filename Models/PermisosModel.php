@@ -54,6 +54,25 @@
         	$request_insert = $this->insert($query_insert,$arrData);		
 	        return $request_insert;
 		}
+
+		//para obtener los permisos de los modulos
+		public function permisosModulo(int $idrol)
+		{
+			$this->intIdRol = $idrol;
+			$sql = "SELECT p.idPermisos, p.idModulo,
+						   m.título,
+						   p.insertar, p.consultar, p.actualizar, p.eliminar 
+					FROM permisos AS p 
+					INNER JOIN modulo AS m
+					ON p.idModulo = m.idModulo
+					WHERE p.idRol = $this->intIdRol";
+			$request = $this->select_all($sql);
+			$arrPermisos = array();
+			for ($i=0; $i < count($request); $i++) { 
+				$arrPermisos[$request[$i]['idModulo']] = $request[$i];
+			}
+			return $arrPermisos;
+		}
         
     }
 ?>

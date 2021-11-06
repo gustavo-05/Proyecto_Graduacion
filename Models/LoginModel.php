@@ -27,7 +27,7 @@
         public function sessionLogin(int $idUsuario)
         {
 			$this->intIdUsuario = $idUsuario;
-			$sql = "SELECT u.idUsuario, u.usuario, p.nombre, p.apellido, r.rol, u.estado
+			$sql = "SELECT u.idUsuario, u.usuario, p.nombre, p.apellido, r.idRol, r.rol, u.estado
 					FROM usuario AS u
 					INNER JOIN personal AS p
 					INNER JOIN rol AS r

@@ -10,11 +10,16 @@
 			{
 				header('Location: '.base_url().'/login');
 			}
-			//getPermisos(1);
+			getPermisos(2);
         }
 
         public function usuarios()
-        {        
+        {
+            //validacion para permisos
+            if(empty($_SESSION['permisosMod']['consultar']))
+            {
+                header("Location:".base_url().'/principal');
+            }
             $data['page_tag'] = "Usuarios";
             $data['page_title'] = "Usuario <small>Bordados</small>";
             $data['page_name'] = "usuarios";
@@ -42,7 +47,7 @@
                 $arrData[$i]['ver'] = '<div class="text-center">
                 <button class="btn btn-outline-info btnVerUsuario" onClick="fntVerUsuario('.$arrData[$i]['idUsuario'].')" title="Ver">Ver</button>
                 </div>';
-
+                
                 //boton actualizar
                 $arrData[$i]['actualizar'] = '<div class="text-center">
                 <button class="btn btn-outline-warning btnActualizarUsuario" onClick="fntActualizarUsuario('.$arrData[$i]['idUsuario'].')" title="Actualizar">Actualizar</button>

@@ -12,9 +12,6 @@
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">Vista Principal</div>
-
-            <!--Mostrar datos del usuario-->
-            <?= dep($_SESSION['userData']); ?>
           </div>
         </div>
       </div>

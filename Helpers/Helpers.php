@@ -37,6 +37,25 @@
         require_once $view_modal;
     }
 
+    //para la extracción de permisos de los usuarios segun el rol que tengan
+    function getPermisos(int $idmodulo)
+    {
+        require_once ("Models/PermisosModel.php");
+        $objPermisos = new PermisosModel();
+        $idrol = $_SESSION['userData']['idRol'];
+        $arrPermisos = $objPermisos->permisosModulo($idrol);
+        //validación de permisos
+        $permisos = '';
+        $permisosMod = '';
+        if(count($arrPermisos) > 0 )
+        {
+            $permisos = $arrPermisos;
+            $permisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+        }
+        $_SESSION['permisos'] = $permisos;
+        $_SESSION['permisosMod'] = $permisosMod;
+    }
+    
     //funcion para limpiar los excesos de espacions en cadenas
     function strClean($strCadena)
     {
