@@ -17,7 +17,7 @@
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="<?= base_url(); ?>/dashboard">Bordados Say</a>
+    <header class="app-header"><a class="app-header__logo" href="<?= base_url(); ?>/principal">Bordados Say</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
