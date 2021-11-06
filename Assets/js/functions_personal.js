@@ -21,9 +21,18 @@ document.addEventListener('DOMContentLoaded', function()
             { "data": "actualizar" },
             { "data": "eliminar" }
         ],
+        'dom': 'lBfrtip',
+        'buttons': [
+            {
+                "extend": "pdfHtml5",
+                "text": "<i class='fas fa-file-pdf'></i> PDF",
+                "titleAttr":"Exportar a PDF",
+                "className": "btn btn-danger"
+            }
+        ],      
         "resonsieve": "true",
         "bDestroy": true,
-        "iDisplayLength": 100,
+        "iDisplayLength": 10,
         "order": [[0, "asc"]]
     });
 
@@ -43,6 +52,18 @@ document.addEventListener('DOMContentLoaded', function()
             swal("Atención", "Debe llenar todos los campos obligatoios." , "error");
             return false;
         }
+
+        //para validar si se estan cumpliendo las funciones de los datos validos ingresados en los formularios
+        let elementsValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elementsValid.length; i++) 
+        { 
+            if(elementsValid[i].classList.contains('is-invalid')) 
+            { 
+                swal("Atención", "Verifique los campos." , "error");
+                return false;
+            } 
+        } 
+
         //capturando datos por medio de ajax
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url+'/Personal/setPersona';
@@ -63,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function()
                     swal("Personal", objData.msg ,"success");
                     tablePersonal.api().ajax.reload(function()
                     {
-                        fntActualizarPersona();
-                        fntEliminarPersona();
+                        /*fntActualizarPersona();
+                        fntEliminarPersona();**/
                     });
                 }
                 else
@@ -95,108 +116,95 @@ function openModal()
 //para que cargue desde que se carga el documento
 window.addEventListener('load', function()
 {
-    fntActualizarPersona();
-    fntEliminarPersona();
+    /*fntActualizarPersona();
+    fntEliminarPersona();*/
 }, false);
 
 //para asignar la funcion a todos los id btnActualizar
-function fntActualizarPersona()
+function fntActualizarPersona(idPersonal)
 {
-    var btnActualizarPersona = document.querySelectorAll(".btnActualizarPersona");
-    btnActualizarPersona.forEach(function(btnActualizarPersona)
+    document.querySelector('#tituloModal').innerHTML = "Actualizar Persona";
+    document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+    document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+    //Mostrar datos en formulario
+    var idpersonal = idPersonal;
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url+'/Personal/getPersona/'+idpersonal;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+
+    //para obtener la respuesta a la peticion
+    request.onreadystatechange = function()
     {
-        btnActualizarPersona.addEventListener('click', function()
+        if (request.readyState == 4 && request.status == 200) 
         {
-            document.querySelector('#tituloModal').innerHTML = "Actualizar Persona";
-            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
-            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+            var objData = JSON.parse(request.responseText);
 
-            //Mostrar datos en formulario
-            var idpersonal = this.getAttribute("rl");
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Personal/getPersona/'+idpersonal;
-            request.open("GET", ajaxUrl, true);
-            request.send();
-
-            //para obtener la respuesta a la peticion
-            request.onreadystatechange = function()
+            //validar los datos a mostrar
+            if (objData.status) 
             {
-                if (request.readyState == 4 && request.status == 200) 
-                {
-                    var objData = JSON.parse(request.responseText);
+                document.querySelector('#idPersonal').value = objData.data.idPersonal;
+                document.querySelector('#txtNombrePersonal').value =objData.data.nombre;
+                document.querySelector('#txtApellidoPersonal').value =objData.data.apellido;
+                document.querySelector('#txtDirecciónPersonal').value =objData.data.dirección;
+                document.querySelector('#intTeléfonoPersonal').value =objData.data.teléfono;
 
-                    //validar los datos a mostrar
-                    if (objData.status) 
-                    {
-                        document.querySelector('#idPersonal').value = objData.data.idPersonal;
-                        document.querySelector('#txtNombrePersonal').value =objData.data.nombre;
-                        document.querySelector('#txtApellidoPersonal').value =objData.data.apellido;
-                        document.querySelector('#txtDirecciónPersonal').value =objData.data.dirección;
-                        document.querySelector('#intTeléfonoPersonal').value =objData.data.teléfono;
+                $('#modalFromPersonal').modal('show');
 
-                        $('#modalFromPersonal').modal('show');
-
-                    }
-                    else
-                    {
-                        swal("Error", objData.msg , "error");
-                    }
-                }
             }
-        });
-    });
+            else
+            {
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
 }
 
 //eliminar un color
-function fntEliminarPersona()
+function fntEliminarPersona(idPersonal)
 {
-    var btnEliminarPersona = document.querySelectorAll(".btnEliminarPersona");
-    btnEliminarPersona.forEach(function(btnEliminarPersona) {
-        btnEliminarPersona.addEventListener('click', function()
+    var idpersonal = idPersonal;
+    swal({
+        title: "Eliminar Personal",
+        text: "¿Seguro que quiere eliminar a esta persona?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function(isConfirm) 
+    {
+        
+        if (isConfirm) 
         {
-            var idpersonal = this.getAttribute("rl");
-            swal({
-                title: "Eliminar Personal",
-                text: "¿Seguro que quiere eliminar a esta persona?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Si, eliminar!",
-                cancelButtonText: "No, cancelar!",
-                closeOnConfirm: false,
-                closeOnCancel: true
-            }, function(isConfirm) 
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Personal/eliminarPersona/';
+            var strData = "idPersonal="+idpersonal;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function()
             {
-                
-                if (isConfirm) 
+                if(request.readyState == 4 && request.status == 200)
                 {
-                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-                    var ajaxUrl = base_url+'/Personal/eliminarPersona/';
-                    var strData = "idPersonal="+idpersonal;
-                    request.open("POST",ajaxUrl,true);
-                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    request.send(strData);
-                    request.onreadystatechange = function()
+                    var objData = JSON.parse(request.responseText);
+                    if(objData.estado)
                     {
-                        if(request.readyState == 4 && request.status == 200)
+                        swal("Eliminar!", objData.msg , "success");
+                        tablePersonal.api().ajax.reload(function()
                         {
-                            var objData = JSON.parse(request.responseText);
-                            if(objData.estado)
-                            {
-                                swal("Eliminar!", objData.msg , "success");
-                                tablePersonal.api().ajax.reload(function()
-                                {
-                                    fntActualizarPersona();
-                                    fntEliminarPersona();
-                                });
-                            }else
-                            {
-                                swal("Atención!", objData.msg , "error");
-                            }
-                        }
+                            /*fntActualizarPersona();
+                            fntEliminarPersona();*/
+                        });
+                    }else
+                    {
+                        swal("Atención!", objData.msg , "error");
                     }
                 }
-            });
-        });
+            }
+        }
     });
 }

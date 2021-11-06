@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function()
         ],
         "resonsieve": "true",
         "bDestroy": true,
-        "iDisplayLength": 100,
+        "iDisplayLength": 10,
         "order": [[0, "asc"]]
     });
 
@@ -43,6 +43,17 @@ document.addEventListener('DOMContentLoaded', function()
             swal("Atención", "Debe llenar todos los campos." , "error");
             return false;
         }
+
+        //para validar si se estan cumpliendo las funciones de los datos validos ingresados en los formularios
+        let elementsValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elementsValid.length; i++) 
+        { 
+            if(elementsValid[i].classList.contains('is-invalid')) 
+            { 
+                swal("Atención", "Verifique los campos." , "error");
+                return false;
+            } 
+        } 
         //capturando datos por medio de ajax
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url+'/Roles/setRol';

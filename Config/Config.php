@@ -10,7 +10,7 @@
     const DB_NAME       = "graduacion";
     const DB_USER       = "root";
     const DB_PASSWORD   = "";
-    const DB_CHARSET    = "charset=utf8";
+    const DB_CHARSET    = "utf8";
 
     //para las unidades de medida
     const SPD = ".";

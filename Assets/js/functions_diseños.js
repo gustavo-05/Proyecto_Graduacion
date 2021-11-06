@@ -19,9 +19,18 @@ document.addEventListener('DOMContentLoaded', function()
             { "data": "actualizar" },
             { "data": "eliminar" }
         ],
+        'dom': 'lBfrtip',
+        'buttons': [
+            {
+                "extend": "pdfHtml5",
+                "text": "<i class='fas fa-file-pdf'></i> PDF",
+                "titleAttr":"Exportar a PDF",
+                "className": "btn btn-danger"
+            }
+        ],      
         "resonsieve": "true",
         "bDestroy": true,
-        "iDisplayLength": 50,
+        "iDisplayLength": 10,
         "order": [[0, "asc"]]
     });
 
@@ -39,6 +48,19 @@ document.addEventListener('DOMContentLoaded', function()
             swal("Atención", "Debe llenar todos los campos obligatoios." , "error");
             return false;
         }
+
+        //para validar si se estan cumpliendo las funciones de los datos validos ingresados en los formularios
+        let elementsValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elementsValid.length; i++) 
+        { 
+            if(elementsValid[i].classList.contains('is-invalid')) 
+            { 
+                swal("Atención", "Verifique los campos." , "error");
+                return false;
+            } 
+        } 
+
+
         //capturando datos por medio de ajax
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url+'/Diseños/setDiseño';
@@ -59,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function()
                     swal("Diseños", objData.msg ,"success");
                     tableDiseños.api().ajax.reload(function()
                     {
-                        fntActualizarDiseño();
-                        fntEliminarColor();
+                        /*fntActualizarDiseño();
+                        fntEliminarColor();*/
                     });
                 }
                 else
@@ -92,106 +114,93 @@ function openModal()
 //para que cargue desde que se carga el documento
 window.addEventListener('load', function()
 {
-    fntActualizarDiseño();
-    fntEliminarDiseño();
+    /*fntActualizarDiseño();
+    fntEliminarDiseño();*/
 }, false);
 
 //para asignar la funcion a todos los id btnActualizarDiseño
-function fntActualizarDiseño()
+function fntActualizarDiseño(idDiseño)
 {
-    var btnActualizarDiseño = document.querySelectorAll(".btnActualizarDiseño");
-    btnActualizarDiseño.forEach(function(btnActualizarDiseño)
+    document.querySelector('#tituloModal').innerHTML = "Actualizar Diseño";
+    document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+    document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+    //Mostrar datos en formulario
+    var iddiseño = idDiseño;
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url+'/Diseños/getDiseño/'+iddiseño;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+
+    //para obtener la respuesta a la peticion
+    request.onreadystatechange = function()
     {
-        btnActualizarDiseño.addEventListener('click', function()
+        if (request.readyState == 4 && request.status == 200) 
         {
-            document.querySelector('#tituloModal').innerHTML = "Actualizar Diseño";
-            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
-            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+            var objData = JSON.parse(request.responseText);
 
-            //Mostrar datos en formulario
-            var iddiseño = this.getAttribute("rl");
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Diseños/getDiseño/'+iddiseño;
-            request.open("GET", ajaxUrl, true);
-            request.send();
-
-            //para obtener la respuesta a la peticion
-            request.onreadystatechange = function()
+            //validar los datos a mostrar
+            if (objData.status) 
             {
-                if (request.readyState == 4 && request.status == 200) 
-                {
-                    var objData = JSON.parse(request.responseText);
+                document.querySelector('#idDiseño').value = objData.data.idDiseño;
+                document.querySelector('#txtNombreDiseños').value =objData.data.nombre;
+                document.querySelector('#txtDescripciónDiseños').value =objData.data.descripción;
 
-                    //validar los datos a mostrar
-                    if (objData.status) 
-                    {
-                        document.querySelector('#idDiseño').value = objData.data.idDiseño;
-                        document.querySelector('#txtNombreDiseños').value =objData.data.nombre;
-                        document.querySelector('#txtDescripciónDiseños').value =objData.data.descripción;
+                $('#modalFromDiseños').modal('show');
 
-                        $('#modalFromDiseños').modal('show');
-
-                    }
-                    else
-                    {
-                        swal("Error", objData.msg , "error");
-                    }
-                }
             }
-        });
-    });
+            else
+            {
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
 }
 
 //eliminar un Diseño
-function fntEliminarDiseño()
+function fntEliminarDiseño(idDiseño)
 {
-    var btnEliminarDiseño = document.querySelectorAll(".btnEliminarDiseño");
-    btnEliminarDiseño.forEach(function(btnEliminarDiseño) {
-        btnEliminarDiseño.addEventListener('click', function()
+    var iddiseño = idDiseño;
+    swal({
+        title: "Eliminar diseño",
+        text: "¿Seguro que quiere eliminar este diseño?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function(isConfirm) 
+    {
+        
+        if (isConfirm) 
         {
-            var iddiseño = this.getAttribute("rl");
-            swal({
-                title: "Eliminar diseño",
-                text: "¿Seguro que quiere eliminar este diseño?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Si, eliminar!",
-                cancelButtonText: "No, cancelar!",
-                closeOnConfirm: false,
-                closeOnCancel: true
-            }, function(isConfirm) 
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Diseños/eliminarDiseño/';
+            var strData = "idDiseño="+iddiseño;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function()
             {
-                
-                if (isConfirm) 
+                if(request.readyState == 4 && request.status == 200)
                 {
-                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-                    var ajaxUrl = base_url+'/Diseños/eliminarDiseño/';
-                    var strData = "idDiseño="+iddiseño;
-                    request.open("POST",ajaxUrl,true);
-                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    request.send(strData);
-                    request.onreadystatechange = function()
+                    var objData = JSON.parse(request.responseText);
+                    if(objData.estado)
                     {
-                        if(request.readyState == 4 && request.status == 200)
+                        swal("Eliminar!", objData.msg , "success");
+                        tableDiseños.api().ajax.reload(function()
                         {
-                            var objData = JSON.parse(request.responseText);
-                            if(objData.estado)
-                            {
-                                swal("Eliminar!", objData.msg , "success");
-                                tableDiseños.api().ajax.reload(function()
-                                {
-                                    fntActualizarDiseño();
-                                    fntEliminarDiseño();
-                                });
-                            }else
-                            {
-                                swal("Atención!", objData.msg , "error");
-                            }
-                        }
+                            /*fntActualizarDiseño();
+                            fntEliminarDiseño();*/
+                        });
+                    }else
+                    {
+                        swal("Atención!", objData.msg , "error");
                     }
                 }
-            });
-        });
+            }
+        }
     });
 }

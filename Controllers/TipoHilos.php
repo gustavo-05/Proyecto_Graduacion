@@ -25,12 +25,12 @@
 
                 //boton actualizar
                 $arrData[$i]['actualizar'] = '<div class="text-center">
-                <button class="btn btn-outline-warning btnActualizarTipoHilo" rl="'.$arrData[$i]['idTipoHilo'].'" title="Actualizar">Actualizar</button>
+                <button class="btn btn-outline-warning btnActualizarTipoHilo" onClick="fntActualizarTipoHilo('.$arrData[$i]['idTipoHilo'].')" title="Actualizar">Actualizar</button>
                 </div>';
 
                 //boton eliminar
                 $arrData[$i]['eliminar'] = '<div class="text-center">
-                <button class="btn btn-outline-danger btnEliminarTipoHilo" rl="'.$arrData[$i]['idTipoHilo'].'" title="Eliminar">Eliminar</button>
+                <button class="btn btn-outline-danger btnEliminarTipoHilo" onClick="fntEliminarTipoHilo('.$arrData[$i]['idTipoHilo'].')" title="Eliminar">Eliminar</button>
                 </div>';
             }
 

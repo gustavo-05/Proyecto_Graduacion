@@ -26,12 +26,12 @@
                 //para los botones del crud
                 //boton actualizar
                 $arrData[$i]['actualizar'] = '<div class="text-center">
-                <button class="btn btn-outline-warning btnActualizarPersona" rl="'.$arrData[$i]['idPersonal'].'" title="Actualizar">Actualizar</button>
+                <button class="btn btn-outline-warning btnActualizarPersona" onClick="fntActualizarPersona('.$arrData[$i]['idPersonal'].')" title="Actualizar">Actualizar</button>
                 </div>';
 
                 //boton eliminar
                 $arrData[$i]['eliminar'] = '<div class="text-center">
-                <button class="btn btn-outline-danger btnEliminarPersona" rl="'.$arrData[$i]['idPersonal'].'" title="Eliminar">Eliminar</button>
+                <button class="btn btn-outline-danger btnEliminarPersona" onClick="fntEliminarPersona('.$arrData[$i]['idPersonal'].')" title="Eliminar">Eliminar</button>
                 </div>';
             }
 

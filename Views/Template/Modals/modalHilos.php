@@ -30,11 +30,11 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="intCantidadHilos">Cantidad</label><span class="text-danger"> *</span>
-                  <input class="form-control" id="intCantidadHilos" name="intCantidadHilos" type="int" placeholder="Ingrese la cantidad de Telas" required="">
+                  <input class="form-control valid validNumber" id="intCantidadHilos" name="intCantidadHilos" type="int" placeholder="Ingrese la cantidad de Telas" required="" onkeypress="return controlTag(event);">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Descripción</label>
-                  <textarea class="form-control" id="txtDescripciónHilos" name="txtDescripciónHilos" rows="2" placeholder="Opcional"></textarea>
+                  <textarea class="form-control valid validText" id="txtDescripciónHilos" name="txtDescripciónHilos" rows="2" placeholder="Opcional"></textarea>
                 </div>
                 <div class="tile-footer">
                     <button id="btnActionForm" class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnTexto">Guardar</span></button>&nbsp;&nbsp;&nbsp;<a class="btn btn-outline-danger" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>

@@ -33,17 +33,17 @@
 
                 //boton Ver datos de usuario
                 $arrData[$i]['ver'] = '<div class="text-center">
-                <button class="btn btn-outline-info btnVerUsuario" rl="'.$arrData[$i]['idUsuario'].'" title="Ver">Ver</button>
+                <button class="btn btn-outline-info btnVerUsuario" onClick="fntVerUsuario('.$arrData[$i]['idUsuario'].')" title="Ver">Ver</button>
                 </div>';
 
                 //boton actualizar
                 $arrData[$i]['actualizar'] = '<div class="text-center">
-                <button class="btn btn-outline-warning btnActualizarUsuario" rl="'.$arrData[$i]['idUsuario'].'" title="Actualizar">Actualizar</button>
+                <button class="btn btn-outline-warning btnActualizarUsuario" onClick="fntActualizarUsuario('.$arrData[$i]['idUsuario'].')" title="Actualizar">Actualizar</button>
                 </div>';
 
                 //boton eliminar
                 $arrData[$i]['eliminar'] = '<div class="text-center">
-                <button class="btn btn-outline-danger btnEliminarUsuario" rl="'.$arrData[$i]['idUsuario'].'" title="Eliminar">Eliminar</button>
+                <button class="btn btn-outline-danger btnEliminarUsuario" onClick="fntEliminarUsuario('.$arrData[$i]['idUsuario'].')" title="Eliminar">Eliminar</button>
                 </div>';
             }
 
@@ -121,10 +121,10 @@
         //para extraer un dato de la tabla y editar
         public function getUsuario(int $idUsuario)
         {
-           $idusuario = intval($idUsuario);
-           if($idusuario > 0) 
+           $idUsuario = intval($idUsuario);
+           if($idUsuario > 0) 
            {
-               $arrData = $this->model->selectUsuario($idusuario);
+               $arrData = $this->model->selectUsuario($idUsuario);
                if (empty($arrData)) 
                 {
                     $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
@@ -136,6 +136,25 @@
                 echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
            }
             die(); 
+        }
+
+        //para eliminar usuario
+        public function eliminarUsuario()
+        {
+            if($_POST){
+                $intIdusuario = intval($_POST['idUsuario']);
+                $requestDelete = $this->model->deleteUsuario($intIdusuario);
+                if($requestDelete == 'ok')
+                {
+                    $arrResponse = array('estado' => true, 'msg' => 'Eliminado correctamente');
+                }
+                else
+                {
+                    $arrResponse = array('estado' => false, 'msg' => 'Error al eliminar el Usuario.');
+                }
+                echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            }
+            die();
         }
     }
 ?>

@@ -21,6 +21,15 @@ document.addEventListener('DOMContentLoaded', function()
             { "data": "actualizar" },
             { "data": "eliminar" }
         ],
+        'dom': 'lBfrtip',
+        'buttons': [
+            {
+                "extend": "pdfHtml5",
+                "text": "<i class='fas fa-file-pdf'></i> PDF",
+                "titleAttr":"Exportar a PDF",
+                "className": "btn btn-danger"
+            }
+        ],      
         "resonsieve": "true",
         "bDestroy": true,
         "iDisplayLength": 50,

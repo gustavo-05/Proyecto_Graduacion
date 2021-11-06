@@ -62,7 +62,7 @@
         public function selectUsuarioTabla(int $idUsuario)
         {
             $this->intIdUsuario = $idUsuario;
-            $sql = "SELECT p.nombre, p.apellido, u.usuario, p.dirección, p.teléfono, r.rol, r.estado, DATE_FORMAT(u.fechaRegistro, '%d-%m-%y') AS fechaRegistro
+            $sql = "SELECT p.nombre, p.apellido, u.usuario, p.dirección, p.teléfono, r.rol, u.estado, DATE_FORMAT(u.fechaRegistro, '%d-%m-%y') AS fechaRegistro
             FROM personal p
             INNER JOIN usuario AS u
             INNER JOIN rol AS r
@@ -78,10 +78,31 @@
         {
             //Buscar color en la base de datos
             $this->intIdUsuario = $idUsuario;
-            $sql ="SELECT u.usuario, u. usuario, u.estado, u.estado, u.idRol, u.idPersonal
+
+           $sql ="SELECT u.usuario, u. usuario, u.estado, u.estado, u.idRol, u.idPersonal
             FROM usuario AS u
             WHERE idUsuario = $this->intIdUsuario";
             $request = $this->select($sql);
+            return $request;
+        }
+
+        /*public function selectUsuario(int $idUsuario)
+        {
+            //Buscar rol en la base de datos
+            $this->intIdUsuario = $idUsuario;
+            $sql ="SELECT *FROM usuario WHERE idUsuario = $this->intIdUsuario";
+            $request = $this->select($sql);
+            return $request;
+        }*/
+
+        //para eliminar usuario
+        public function deleteUsuario(int $idusuario)
+        {
+            $this->intIdusuario = $idusuario;
+            
+            $sql = "UPDATE usuario SET estado = ? WHERE idUsuario = $this->intIdusuario ";
+            $arrData = array(0);
+            $request = $this->update($sql,$arrData);
             return $request;
         }
     } 

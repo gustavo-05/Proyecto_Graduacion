@@ -26,9 +26,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Usuario</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
-                                        <th>Usuario</th>
                                         <th>Rol</th>
                                         <th>Estado</th>
                                         <th>Ver</th>

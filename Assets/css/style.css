@@ -82,6 +82,19 @@
     color: #fff;
 }
 
+.dropdown-item.active, .dropdown-item:active{
+	background: #0d1214;
+    border-left-color: #009688;
+    text-decoration: none;
+    color: #fff;
+}
+
+#selection {
+    color: #FFF;
+    background-color: #add8e6;
+}
+
+
 /*#bs-select-1-0{
 	background: #68c5e2;
 	color: #FFF;

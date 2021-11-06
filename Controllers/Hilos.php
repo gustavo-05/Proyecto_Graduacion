@@ -26,17 +26,17 @@
                 //para los botones del crud
                 //boton editar información
                 $arrData[$i]['editar'] = '<div class="text-center">
-                <button class="btn btn-outline-warning btnEditarHilo" rl="'.$arrData[$i]['idHilo'].'" title="Editar">Editar</button>
+                <button class="btn btn-outline-warning btnEditarHilo" onClick="fntEditarHilo('.$arrData[$i]['idHilo'].')" title="Editar">Editar</button>
                 </div>';
 
                 //boton actualizar cantidad de hilos
                 $arrData[$i]['actualizar'] = '<div class="text-center">
-                <button class="btn btn-outline-primary btnActualizarHilo" rl="'.$arrData[$i]['idHilo'].'" title="Actualizar">Actualizar</button>
+                <button class="btn btn-outline-primary btnActualizarHilo" onClick="fntActualizarHilo('.$arrData[$i]['idHilo'].')" title="Actualizar">Actualizar</button>
                 </div>';
 
                 //boton eliminar
                 $arrData[$i]['eliminar'] = '<div class="text-center">
-                <button class="btn btn-outline-danger btnEliminarHilo" rl="'.$arrData[$i]['idHilo'].'" title="Eliminar">Eliminar</button>
+                <button class="btn btn-outline-danger btnEliminarHilo" onClick="fntEliminarHilo('.$arrData[$i]['idHilo'].')" title="Eliminar">Eliminar</button>
                 </div>';
             }
 

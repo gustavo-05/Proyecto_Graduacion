@@ -14,7 +14,7 @@
                <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
                   <label class="control-label" for="txtUsuario">Ingrese su usuario</label><span class="text-danger"> *</span>
-                  <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Ingrese su usuario" required="">
+                  <input class="form-control valid validText" id="txtUsuario" name="txtUsuario" type="text" placeholder="Ingrese su usuario" required="">
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="txtContraseña">Ingrese su contraseña</label><span class="text-danger"> *</span>

@@ -19,9 +19,18 @@ document.addEventListener('DOMContentLoaded', function()
             { "data": "actualizar" },
             { "data": "eliminar" }
         ],
+        'dom': 'lBfrtip',
+        'buttons': [
+            {
+                "extend": "pdfHtml5",
+                "text": "<i class='fas fa-file-pdf'></i> PDF",
+                "titleAttr":"Exportar a PDF",
+                "className": "btn btn-danger"
+            }
+        ],      
         "resonsieve": "true",
         "bDestroy": true,
-        "iDisplayLength": 100,
+        "iDisplayLength": 10,
         "order": [[0, "asc"]]
     });
 
@@ -39,6 +48,18 @@ document.addEventListener('DOMContentLoaded', function()
             swal("Atención", "Debe llenar todos los campos obligatoios." , "error");
             return false;
         }
+
+        //para validar si se estan cumpliendo las funciones de los datos validos ingresados en los formularios
+        let elementsValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elementsValid.length; i++) 
+        { 
+            if(elementsValid[i].classList.contains('is-invalid')) 
+            { 
+                swal("Atención", "Verifique los campos." , "error");
+                return false;
+            } 
+        } 
+
         //capturando datos por medio de ajax
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url+'/Colores/setColor';
@@ -59,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function()
                     swal("Colores", objData.msg ,"success");
                     tableColores.api().ajax.reload(function()
                     {
-                        fntActualizarColor();
-                        fntEliminarColor();
+                        /*fntActualizarColor();
+                        fntEliminarColor();*/
                     });
                 }
                 else
@@ -91,106 +112,93 @@ function openModal()
 //para que cargue desde que se carga el documento
 window.addEventListener('load', function()
 {
-    fntActualizarColor();
-    fntEliminarColor();
+    /*fntActualizarColor();
+    fntEliminarColor();*/
 }, false);
 
 //para asignar la funcion a todos los id btnActualizarTipoHilo
-function fntActualizarColor()
+function fntActualizarColor(idColor)
 {
-    var btnActualizarColor = document.querySelectorAll(".btnActualizarColor");
-    btnActualizarColor.forEach(function(btnActualizarColor)
+    document.querySelector('#tituloModal').innerHTML = "Actualizar Color";
+    document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
+    document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
+    document.querySelector('#btnTexto').innerHTML = "Actualizar";
+
+    //Mostrar datos en formulario
+    var idcolor = idColor;
+    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    var ajaxUrl = base_url+'/Colores/getColor/'+idcolor;
+    request.open("GET", ajaxUrl, true);
+    request.send();
+
+    //para obtener la respuesta a la peticion
+    request.onreadystatechange = function()
     {
-        btnActualizarColor.addEventListener('click', function()
+        if (request.readyState == 4 && request.status == 200) 
         {
-            document.querySelector('#tituloModal').innerHTML = "Actualizar Color";
-            document.querySelector('.modal-header').classList.replace("headerRegistro", "headerActualizar");
-            document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-            document.querySelector('#btnTexto').innerHTML = "Actualizar";
+            var objData = JSON.parse(request.responseText);
 
-            //Mostrar datos en formulario
-            var idcolor = this.getAttribute("rl");
-            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Colores/getColor/'+idcolor;
-            request.open("GET", ajaxUrl, true);
-            request.send();
-
-            //para obtener la respuesta a la peticion
-            request.onreadystatechange = function()
+            //validar los datos a mostrar
+            if (objData.status) 
             {
-                if (request.readyState == 4 && request.status == 200) 
-                {
-                    var objData = JSON.parse(request.responseText);
+                document.querySelector('#idColor').value = objData.data.idColor;
+                document.querySelector('#txtNombreColores').value =objData.data.color;
+                document.querySelector('#txtDescripciónColores').value =objData.data.descripción;
 
-                    //validar los datos a mostrar
-                    if (objData.status) 
-                    {
-                        document.querySelector('#idColor').value = objData.data.idColor;
-                        document.querySelector('#txtNombreColores').value =objData.data.color;
-                        document.querySelector('#txtDescripciónColores').value =objData.data.descripción;
+                $('#modalFromColores').modal('show');
 
-                        $('#modalFromColores').modal('show');
-
-                    }
-                    else
-                    {
-                        swal("Error", objData.msg , "error");
-                    }
-                }
             }
-        });
-    });
+            else
+            {
+                swal("Error", objData.msg , "error");
+            }
+        }
+    }
 }
 
 //eliminar un color
-function fntEliminarColor()
+function fntEliminarColor(idColor)
 {
-    var btnEliminarColor = document.querySelectorAll(".btnEliminarColor");
-    btnEliminarColor.forEach(function(btnEliminarColor) {
-        btnEliminarColor.addEventListener('click', function()
+    var idcolor = idColor;
+    swal({
+        title: "Eliminar color",
+        text: "¿Seguro que quiere eliminar este color?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        closeOnConfirm: false,
+        closeOnCancel: true
+    }, function(isConfirm) 
+    {
+        
+        if (isConfirm) 
         {
-            var idcolor = this.getAttribute("rl");
-            swal({
-                title: "Eliminar color",
-                text: "¿Seguro que quiere eliminar este color?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Si, eliminar!",
-                cancelButtonText: "No, cancelar!",
-                closeOnConfirm: false,
-                closeOnCancel: true
-            }, function(isConfirm) 
+            var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            var ajaxUrl = base_url+'/Colores/eliminarColor/';
+            var strData = "idColor="+idcolor;
+            request.open("POST",ajaxUrl,true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function()
             {
-                
-                if (isConfirm) 
+                if(request.readyState == 4 && request.status == 200)
                 {
-                    var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-                    var ajaxUrl = base_url+'/Colores/eliminarColor/';
-                    var strData = "idColor="+idcolor;
-                    request.open("POST",ajaxUrl,true);
-                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    request.send(strData);
-                    request.onreadystatechange = function()
+                    var objData = JSON.parse(request.responseText);
+                    if(objData.estado)
                     {
-                        if(request.readyState == 4 && request.status == 200)
+                        swal("Eliminar!", objData.msg , "success");
+                        tableColores.api().ajax.reload(function()
                         {
-                            var objData = JSON.parse(request.responseText);
-                            if(objData.estado)
-                            {
-                                swal("Eliminar!", objData.msg , "success");
-                                tableColores.api().ajax.reload(function()
-                                {
-                                    fntActualizarColor();
-                                    fntEliminarColor();
-                                });
-                            }else
-                            {
-                                swal("Atención!", objData.msg , "error");
-                            }
-                        }
+                            /*fntActualizarColor();
+                            fntEliminarColor();*/
+                        });
+                    }else
+                    {
+                        swal("Atención!", objData.msg , "error");
                     }
                 }
-            });
-        });
+            }
+        }
     });
 }

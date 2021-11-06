@@ -20,11 +20,11 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="intCantidadTelas">Cantidad</label><span class="text-danger"> *</span>
-                  <input class="form-control" id="intCantidadTelas" name="intCantidadTelas" type="int" placeholder="Ingrese la cantidad de telas" required="">
+                  <input class="form-control valid validNumber" id="intCantidadTelas" name="intCantidadTelas" type="int" placeholder="Ingrese la cantidad de telas" required="" onkeypress="return controlTag(event);">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Descripción</label>
-                  <textarea class="form-control" id="txtDescripciónTelas" name="txtDescripciónTelas" rows="2" placeholder="Opcional"></textarea>
+                  <textarea class="form-control valid validText" id="txtDescripciónTelas" name="txtDescripciónTelas" rows="2" placeholder="Opcional"></textarea>
                 </div>
                 
                 <div class="tile-footer">
