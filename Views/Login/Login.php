@@ -32,7 +32,12 @@
           </div>
           <div id="alertaLogin" class="text-center"></div>
           <div class="form-group btn-container">
-            <button type="submit" class="btn btn-info btn-block">Entrar</button>
+            <button type="submit" class="btn btn-success btn-block">Entrar</button>
+          </div>
+          <br>
+          <div class="form-group btn-container">
+            <a href="<?php echo base_url(); ?>/home" class="btn btn-info btn-block">Regresar</a>
+            
           </div>
         </form>
       </div>

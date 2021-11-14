@@ -12,6 +12,13 @@
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">Vista Principal</div>
+            <br><br><br>
+
+            <div class="col-md-6 container" >
+              <a href="<?= media(); ?>/pdf/Manual_de_Usuario.pdf" download="Manual.pdf">
+                <button id="bntManual" class="btn btn-info btn-lg btn-block" type="button">Descargar Manual de usuario</button></a>
+            </div>
+
           </div>
         </div>
       </div>

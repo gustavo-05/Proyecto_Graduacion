@@ -113,3 +113,18 @@
 	background: #68c5e2;
 	color: #FFF;
 }*/
+
+.imgProductos{
+	
+    WIDTH: auto; 
+    HEIGHT: auto;
+    max-width: 100%;
+    
+}
+
+.carousel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}

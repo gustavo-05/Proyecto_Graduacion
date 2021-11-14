@@ -14,7 +14,7 @@
               <p class="text-danger">Campos obligatorios *</p>
                 <div class="form-group">
                     <label class="control-label" for="listColorHilos">Color</label><span class="text-danger"> *</span>
-                    <select class="form-control" id="listColorHilos" name="lisColorHilos" required>
+                    <select class="form-control" id="listColorHilos" name="listColorHilos" required>
                       
                     </select>
                 </div>
@@ -24,14 +24,11 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="listTipoHilos">Tipo de hilo</label><span class="text-danger"> *</span>
-                    <select class="form-control" id="listTipoHilos" name="lisTipoHilos" required>
+                    <select class="form-control" id="listTipoHilos" name="listTipoHilos" required>
                       
                     </select>
                 </div>
-                <div class="form-group">
-                  <label class="control-label" for="intCantidadHilos">Cantidad</label><span class="text-danger"> *</span>
-                  <input class="form-control valid validNumber" id="intCantidadHilos" name="intCantidadHilos" type="int" placeholder="Ingrese la cantidad de Telas" required="" onkeypress="return controlTag(event);">
-                </div>
+                
                 <div class="form-group">
                   <label class="control-label">Descripción</label>
                   <textarea class="form-control valid validText" id="txtDescripciónHilos" name="txtDescripciónHilos" rows="2" placeholder="Opcional"></textarea>

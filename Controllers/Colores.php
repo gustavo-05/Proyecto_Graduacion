@@ -47,6 +47,22 @@
             die();
         }
 
+        //para la funcion de la lista a mostrar en el formulario de hilos, telas y productos
+        public function getSelectColor()
+        {
+            $htmlOptions = "";
+            $arrData = $this->model->selectColores();
+            if(count($arrData) > 0 ){
+                for ($i=0; $i < count($arrData); $i++) { 
+                    if($arrData[$i]['status'] == 1 ){
+                    $htmlOptions .= '<option value="'.$arrData[$i]['idColor'].'">'.$arrData[$i]['color'].'</option>';
+                    }
+                }
+            }
+            echo $htmlOptions;
+            die();      
+        }
+
         //para cargar un color al formulario
         public function getColor(int $idColor)
         {

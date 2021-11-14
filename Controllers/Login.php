@@ -14,7 +14,7 @@
         public function login()
         {     
             $data['page_tag'] = "Login - Bordados";
-            $data['page_title'] = "Bienvenidos";
+            $data['page_title'] = "Bienvenidos a Bordados Say";
             $data['page_name'] = "home";
             $data['page_functions_js'] = "functions_login.js";
             

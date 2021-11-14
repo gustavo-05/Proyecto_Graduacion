@@ -110,6 +110,17 @@
             </li>
         <?php } ?>
 
+        <?php if(!empty($_SESSION['permisos'][4]['insertar']))
+        { ?>
+            <!--Productos-->
+            <li>
+                <a class="app-menu__item" href="<?= base_url(); ?>/home">
+                    <i class="app-menu__icon fab fa-product-hunt" aria-hidden="true"></i>
+                    <span class="app-menu__label">Promoción de productos</span>
+                </a>
+            </li>
+        <?php } ?>
+
         <!--Cerrar sesión-->
         <li>
             <a class="app-menu__item" href="<?= base_url(); ?>/logout">
