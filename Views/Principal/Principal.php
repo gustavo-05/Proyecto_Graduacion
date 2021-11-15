@@ -12,7 +12,13 @@
         <div class="col-md-12">
           <div class="tile">
             <div class="tile-body">Vista Principal</div>
-            <br><br><br>
+            <br><br>
+            
+            <div class="text-center">
+              <img src="<?= media(); ?>/images/IMG_20210317_164057.jpg" class="rounded" alt="Imagen de máquinas">
+            </div>
+            
+            <br>
 
             <div class="col-md-6 container" >
               <a href="<?= media(); ?>/pdf/Manual_de_Usuario.pdf" download="Manual.pdf">

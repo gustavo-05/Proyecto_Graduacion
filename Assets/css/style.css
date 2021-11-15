@@ -114,6 +114,7 @@
 	color: #FFF;
 }*/
 
+/* Tamaño de producto */
 .imgProductos{
 	
     WIDTH: auto; 
@@ -122,9 +123,49 @@
     
 }
 
+/* tamaño de carousel */
 .carousel {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 }
+
+/* tamaño del carousel dos */
+.carousel2{
+	WIDTH: 600px; 
+    HEIGHT: 600px;
+}
+
+/* Fondo para el inicio de sesión */
+.material-half-bg{
+	background-color: #add8e6;
+}
+
+/* Fondo para el inicio de sesión */
+.material-half-bg .cover{
+	background-color: #add8e6;
+}
+
+/*para cambiar color del texto en el inicio de sesión*/
+.tituloLogin{
+	color: white;
+}
+
+/* para la imagen de fondo del login */
+.loginFondo{
+	background-image: url("../images/IMG_20211112_173709.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+/* imagen en la página principal del sistema */
+.rounded{
+	margin-left: center;
+    margin-right: center;
+    WIDTH: 40%; 
+    HEIGHT: 50px;
+    color: rgb(0, 0, 0);
+    max-width: 100%;
+    height: auto;
+  }

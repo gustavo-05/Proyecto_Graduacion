@@ -9,7 +9,7 @@
         public function home()
         {
             $data['page_id'] = 1;        
-            $data['page_tag'] = "Home";
+            $data['page_tag'] = "Inicio";
             $data['page_title'] = "Página principal";
             $data['page_name'] = "home";
             

@@ -114,7 +114,7 @@
         { ?>
             <!--Productos-->
             <li>
-                <a class="app-menu__item" href="<?= base_url(); ?>/home">
+                <a class="app-menu__item" href="<?= base_url(); ?>/home" target="_blank">
                     <i class="app-menu__icon fab fa-product-hunt" aria-hidden="true"></i>
                     <span class="app-menu__label">Promoción de productos</span>
                 </a>
